@@ -3,6 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Pixel Art Maker</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,800" rel="stylesheet">
+    <!-- Fontawesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+    <!-- Lint to CSS file -->
     <link rel="stylesheet" href="style.css">
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -12,7 +17,38 @@
   <body>
     <!-- FULL WEBSITE -->
     <div class="full-website">
-      
-    </div>
+      <!-- MAIN NAV -->
+      <nav class="main-nav">
+        <!-- Main Nav Item -->
+        <div class="main-nav-item">
+          <a href="javascript:void(0);">
+            <i class="fas fa-bars"></i>
+          </a>
+        </div>
+        <!-- Main Nav Item -->
+        <div class="main-nav-item main-title">
+          <a href="index.html"><h1>Pixel Art Maker</h1></a>
+        </div>
+        <!-- Main Nav Item -->
+        <div class="main-nav-item">
+          <!-- Workspaces -->
+          <form action="#" id="workspaces-form">
+            <select name="workspaces" id="workspaces-select">
+              <option value="default">Default</option>
+              <option value="left">Left</option>
+              <option value="essentials">Essentials</option>
+            </select>
+          </form>
+          <!-- Undo -->
+          <a href="">
+            <i class="fas fa-undo-alt"></i>
+          </a>
+          <!-- Redo -->
+          <a href="">
+            <i class="fas fa-redo-alt"></i>
+          </a>
+        </div>
+      </nav>
+    </div> <!-- FULL WEBSITE -->
   </body>
 </html>
