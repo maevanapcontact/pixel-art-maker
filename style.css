@@ -24,6 +24,7 @@ a {
   display: flex;
   justify-content: space-between;
   padding: 10px 2%;
+  position: fixed;
 }
 
 .main-nav-item {
@@ -82,6 +83,27 @@ a {
 .fa-redo-alt {
   -webkit-filter: drop-shadow(2px 2px #000);
   filter: drop-shadow(2px 2px #000);
+}
+
+/* WEBSITE CONTENT */
+.website-content {
+  background: #282828;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.fa-plus-circle {
+  color: #3cc12e;
+  background: #fff;
+  border-radius: 50%;
+  font-size: 10em;
+  box-shadow: 0 0 200px #e9722a;
+}
+
+.fa-plus-circle:hover {
+  cursor: pointer;
 }
 
 
