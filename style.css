@@ -126,3 +126,12 @@ a {
 @media screen and (max-width: 480px) {
 
 }
+
+
+/* RESPONSIVE HEIGHT < 540PX */
+@media screen and (max-height: 640px) {
+  /* WEBSITE CONTENT */
+  .fa-plus-circle {
+    font-size: 5em;
+  }
+}
