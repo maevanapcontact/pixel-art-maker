@@ -83,3 +83,24 @@ a {
   -webkit-filter: drop-shadow(2px 2px #000);
   filter: drop-shadow(2px 2px #000);
 }
+
+
+/* RESPONSIVE MEDIUM 1024PX */
+@media screen and (max-width: 1024px) {
+
+}
+
+
+/* RESPONSIVE MEDIUM 767PX */
+@media screen and (max-width: 767px) {
+  /* GENERAL */
+  .no-mobile {
+    display: none;
+  }
+}
+
+
+/* RESPONSIVE MEDIUM 480PX */
+@media screen and (max-width: 480px) {
+
+}
