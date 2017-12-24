@@ -180,8 +180,8 @@ a {
 }
 
 .color-item {
-  min-height: 3em;
-  min-width: 3em;
+  height: 2.5em;
+  width: 2.5em;
   background: #fff;
   border: 2px solid #272727;
   border-radius: 5px;
@@ -212,7 +212,7 @@ a {
 .fa-ban,
 .fa-file,
 .fa-ellipsis-h {
-  font-size: 3em;
+  font-size: 2em;
 }
 
 .fa-paint-brush:hover,
@@ -229,15 +229,15 @@ a {
 .color-picker-block {
   position: relative;
   background: none;
-  height: 3.5em;
-  width: 3.5em;
+  height: 2.5em;
+  width: 2.5em;
   border: none;
 }
 
 #back-color,
 #tool-color {
-  height: 3em;
-  width: 3em;
+  height: 2em;
+  width: 2em;
   border: 2px solid #272727;
   background: #272727;
   border-radius: 5px;
@@ -261,7 +261,9 @@ a {
 
 /* RESPONSIVE MEDIUM 1024PX */
 @media screen and (max-width: 1024px) {
-
+  .tools-bar-inside {
+    width: 100%;
+  }
 }
 
 
@@ -271,12 +273,37 @@ a {
   .no-mobile {
     display: none;
   }
+
+  .main-tools {
+    width: 100%;
+  }
 }
 
 
 /* RESPONSIVE MEDIUM 480PX */
 @media screen and (max-width: 480px) {
+  /* TOOLS BAR */
+  .main-tools {
+    flex-direction: column;
+  }
 
+  .fa-plus,
+  .fa-minus {
+    font-size: 1.2em;
+  }
+
+  .main-tools {
+    margin: 10px 0 0 0;
+  }
+
+  .main-tools .tools-bar-item {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  #zoom-form {
+    width: 70%;
+  }
 }
 
 
