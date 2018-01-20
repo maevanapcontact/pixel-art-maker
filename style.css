@@ -67,11 +67,13 @@ a {
 
 .main-nav-item {
   align-self: center;
+  display: flex;
 }
 
 .main-nav-item span,
 .main-nav-item form {
   align-self: center;
+  margin: 0 5px;
 }
 
 .main-nav a,
@@ -269,6 +271,11 @@ a {
     display: none;
   }
 
+  /* NAV BAR */
+  .main-title.no-mobile {
+    display: none;
+  }
+
   /* TOOLS BAR */
   .main-tools {
     width: 100%;
@@ -309,4 +316,32 @@ a {
   .fa-plus-circle {
     font-size: 5em;
   }
+}
+
+/* ESSENTIAL WORKSPACE DESKTOP */
+/* -------------------------------------------- */
+.items-essential-ws {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
+}
+
+.item-essential-ws .fa-plus-circle {
+  font-size: 2em;
+  color: #a3a3a3;
+  -webkit-filter: drop-shadow(2px 2px #000);
+  filter: drop-shadow(2px 2px #000);
+  background: none;
+  box-shadow: none;
+}
+
+.item-essential-ws .fa-plus-circle:hover {
+  color: #e9722a;
+}
+
+
+/* HIDDEN */
+.full-website .hidden {
+  display: none;
 }
