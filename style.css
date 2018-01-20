@@ -345,3 +345,51 @@ a {
 .full-website .hidden {
   display: none;
 }
+
+
+/* LEFT WORKSPACE DESKTOP */
+/* -------------------------------------------- */
+.tools-bar.left-ws {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 85px;
+}
+
+.main-tools.left-ws,
+.tools-bar-item.left-ws {
+  flex-direction: column;
+  margin: 10px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.tools-bar-item.left-ws .color-item,
+.tools-bar-item.left-ws .icon-click {
+  margin: 5px 0;
+}
+
+#zoom-form.zoom-form-left-ws,
+#zoom-form.zoom-form-left-ws input {
+  width: 75px;
+}
+
+.tools-bar-item.left-ws {
+  width: 75px;
+}
+
+.tools-bar-item.left-ws .fa-plus,
+.tools-bar-item.left-ws .fa-minus {
+  font-size: 1em;
+}
+
+.tools-bar-inside.left-ws {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tools-bar-item.left-ws #zoom-input::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+}
