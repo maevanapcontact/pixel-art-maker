@@ -285,6 +285,11 @@ a {
 
 /* RESPONSIVE MEDIUM 480PX */
 @media screen and (max-width: 480px) {
+  /* MAIN NAV BAR */
+  #workspaces-form #workspaces-select {
+    font-size: 0.8em;
+  }
+
   /* TOOLS BAR */
   .main-tools {
     flex-direction: column;
