@@ -26,7 +26,7 @@
           </a>
         </div>
         <!-- Items Essential Workspace -->
-        <div class="items-essential-ws hidden">
+        <div class="items-essential-ws hidden" id="items-essential-ws">
           <span class="item-essential-ws">
             <i class="fas fa-plus-circle"></i>
           </span>
@@ -53,7 +53,7 @@
           </span>
         </div>
         <!-- Main Nav Item -->
-        <div class="main-nav-item main-title no-mobile">
+        <div class="main-nav-item main-title no-mobile" id="main-title">
           <a href="index.html"><h1>Pixel Art Maker</h1></a>
         </div>
         <!-- Main Nav Item -->
@@ -61,17 +61,17 @@
           <!-- Workspaces -->
           <form action="#" id="workspaces-form">
             <select name="workspaces" id="workspaces-select">
-              <option value="default">Default</option>
+              <option value="default" selected="selected">Default</option>
               <option value="left">Left</option>
               <option value="essentials">Essentials</option>
             </select>
           </form>
           <!-- Undo -->
-          <span class="icon-click">
+          <span class="icon-click" id="icon-click-undo">
             <i class="fas fa-undo-alt"></i>
           </span>
           <!-- Redo -->
-          <span class="icon-click">
+          <span class="icon-click" id="icon-click-redo">
             <i class="fas fa-redo-alt"></i>
           </span>
         </div>
@@ -85,11 +85,11 @@
           </div>
         </main>
         <!-- Tools Bar -->
-        <div class="tools-bar">
+        <div class="tools-bar" id="tools-bar">
           <!-- Tools Bar Inside -->
-          <div class="tools-bar-inside">
+          <div class="tools-bar-inside" id="tools-bar-inside">
             <!-- Tools Bar Item -->
-            <div class="tools-bar-item">
+            <div class="tools-bar-item" id="tools-bar-item-1">
               <span class="icon-click">
                 <i class="fas fa-plus"></i>
               </span>
@@ -101,9 +101,9 @@
               </span>
             </div>
             <!-- Main Tools -->
-            <div class="main-tools">
+            <div class="main-tools" id="main-tools">
               <!-- Tools Bar Item -->
-              <div class="tools-bar-item">
+              <div class="tools-bar-item" id='tools-bar-item-2'>
                 <div class="color-item"></div>
                 <div class="color-item"></div>
                 <div class="color-item"></div>
@@ -117,7 +117,7 @@
                 </div>
               </div>
               <!-- Tools Bar Item -->
-              <div class="tools-bar-item icons-tools-items">
+              <div class="tools-bar-item icons-tools-items" id="tools-bar-item-3">
                 <span class="icon-click">
                   <i class="fas fa-paint-brush"></i>
                 </span>
