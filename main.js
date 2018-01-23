@@ -1,19 +1,25 @@
-/* Operations when the DOM is ready */
+// Operations when the DOM is ready
 $(function() {
-  /* Variables DOM */
+  // Variables DOM
   const WORKSPACE_SELECT = $('#workspaces-select');
   const CREATE_GRID_BTN = $('#create-grid-btn');
   const CREATE_CANVAS_FORM = $('#create-canvas-form');
   const CANVAS_TABLE = $('#canvas-table');
   const CREATE_GRID_POPUP = $('#create-grid-popup');
+  const WIDTH_INPUT = $('#width-input');
+  const HEIGHT_INPUT = $('#height-input');
 
-  /* Open Build Grid Popup */
+  // Variables to create grid
+  let widthCanvas = WIDTH_INPUT.val();
+  let heightCanvas = HEIGHT_INPUT.val();
+
+  // Open Build Grid Popup
   CREATE_GRID_BTN.click(function() {
     CREATE_GRID_BTN.addClass('hidden');
     CREATE_GRID_POPUP.removeClass('hidden');
   });
 
-  /* Workspace choice */
+  // Workspace choice
   $(WORKSPACE_SELECT).change(function() {
     changeWorkspace();
   });
@@ -75,6 +81,42 @@ $(function() {
     }
   }
 
+  // Change the predifined size
+  CREATE_CANVAS_FORM.change(function() {
+    changePredifinedSize();
+  });
+
+  function changePredifinedSize() {
+    let elementSelected = $('#create-canvas-form option:selected');
+
+    switch(elementSelected.attr('value')) {
+      case '8':
+        heightCanvas = 8;
+        widthCanvas = 8;
+        HEIGHT_INPUT.attr('value', '8');
+        WIDTH_INPUT.attr('value', '8');
+      break;
+      case '16':
+        heightCanvas = 16;
+        widthCanvas = 16;
+        HEIGHT_INPUT.attr('value', '16');
+        WIDTH_INPUT.attr('value', '16');
+      break;
+      case '32':
+        heightCanvas = 32;
+        widthCanvas = 32;
+        HEIGHT_INPUT.attr('value', '32');
+        WIDTH_INPUT.attr('value', '32');
+      break;
+      case '64':
+        heightCanvas = 64;
+        widthCanvas = 64;
+        HEIGHT_INPUT.attr('value', '64');
+        WIDTH_INPUT.attr('value', '64');
+      break;
+    }
+  }
+
   // Build the Grid
   CREATE_CANVAS_FORM.submit(function(event) {
     event.preventDefault();
@@ -84,12 +126,6 @@ $(function() {
   });
 
   function makeGrid() {
-    const WIDTH_INPUT = $('#width-input');
-    const HEIGHT_INPUT = $('#height-input');
-
-    let widthCanvas = WIDTH_INPUT.val();
-    let heightCanvas = HEIGHT_INPUT.val();
-
     for (let i = 0; i < heightCanvas; i++) {
       CANVAS_TABLE.append('<tr></tr>');
       for (let j = 0; j < widthCanvas; j++) {
