@@ -175,11 +175,6 @@ a {
   border-radius: 5px;
 }
 
-.predifined-sizes select:hover,
-.grid-custom-sizes input:hover {
-  cursor: pointer;
-}
-
 .grid-custom-sizes {
   display: flex;
   justify-content: space-around;
@@ -224,7 +219,7 @@ a {
   margin: 0 0 10px 0;
 }
 
-#create-canvas-btn {
+.create-canvas-btn {
   background: #e9722a;
   color: #fff;
   padding: 10px 20px;
@@ -234,12 +229,27 @@ a {
   font-weight: bold;
 }
 
-#create-canvas-btn:hover {
+.create-canvas-btn:hover {
   background: #272727;
   border-color: #e9722a;
   cursor: pointer;
 }
 
+/* CANVAS TABLE */
+.canvas-table {
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.canvas-table td {
+  border: 1px solid #000;
+  width: 20px;
+  height: 20px;
+}
+
+.canvas-table td:hover {
+  cursor: pointer;
+}
 
 /* TOOLS BAR */
 .tools-bar {

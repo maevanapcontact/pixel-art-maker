@@ -3,14 +3,15 @@ $(function() {
   /* Variables DOM */
   const WORKSPACE_SELECT = $('#workspaces-select');
   const CREATE_GRID_BTN = $('#create-grid-btn');
-
-  /* Open Build Grid Popup */
-CREATE_GRID_BTN.click(function() {
+  const CREATE_CANVAS_FORM = $('#create-canvas-form');
+  const CANVAS_TABLE = $('#canvas-table');
   const CREATE_GRID_POPUP = $('#create-grid-popup');
 
-  CREATE_GRID_BTN.addClass('hidden');
-  CREATE_GRID_POPUP.removeClass('hidden');
-});
+  /* Open Build Grid Popup */
+  CREATE_GRID_BTN.click(function() {
+    CREATE_GRID_BTN.addClass('hidden');
+    CREATE_GRID_POPUP.removeClass('hidden');
+  });
 
   /* Workspace choice */
   $(WORKSPACE_SELECT).change(function() {
@@ -71,6 +72,29 @@ CREATE_GRID_BTN.click(function() {
         ICON_CLICK_REDO.addClass('hidden');
         TOOLS_BAR.addClass('hidden');
       break;
+    }
+  }
+
+  // Build the Grid
+  CREATE_CANVAS_FORM.submit(function(event) {
+    event.preventDefault();
+    CREATE_GRID_POPUP.addClass('hidden');
+    CANVAS_TABLE.removeClass('hidden');
+    makeGrid();
+  });
+
+  function makeGrid() {
+    const WIDTH_INPUT = $('#width-input');
+    const HEIGHT_INPUT = $('#height-input');
+
+    let widthCanvas = WIDTH_INPUT.val();
+    let heightCanvas = HEIGHT_INPUT.val();
+
+    for (let i = 0; i < heightCanvas; i++) {
+      CANVAS_TABLE.append('<tr></tr>');
+      for (let j = 0; j < widthCanvas; j++) {
+        $('tr').last().append('<td></td>');
+      }
     }
   }
 });
