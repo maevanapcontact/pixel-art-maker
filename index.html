@@ -80,8 +80,48 @@
       <section class="website-content">
         <!-- Main Content -->
         <main class="main-content">
-          <div class="create-grid-btn">
+          <!-- Create Grid Button -->
+          <div class="create-grid-btn hidden" id="create-grid-button">
             <i class="fas fa-plus-circle"></i>
+          </div>
+          <!-- Create grid popup -->
+          <div class="create-grid-popup">
+            <form action="#" class="create-grid-form">
+              <!-- Predifined sizes -->
+              <div class="predifined-sizes">
+                <label for="predifined-sizes">Predifined sizes</label>
+                <select name="predifined-sizes">
+                  <option value="16">16 x 16</option>
+                  <option value="32">32 x 32</option>
+                  <option value="64">64 x 64</option>
+                  <option value="128">128 x 128</option>
+                </select>
+              </div>
+              <!-- Width and Height -->
+              <div class="grid-custom-sizes">
+                <div class="grid-inputs">
+                  <label for="width-input">width</label>
+                  <input id="width-input" name="width-input" type="number" value="10" min="1" max="150">
+                </div>
+                <div class="grid-inputs">
+                  <label for="height-input">height</label>
+                  <input id="height-input" name="height-input" type="number" value="10" min="1" max="150">
+                </div>
+              </div>
+              <!-- Color Pickers -->
+              <div class="color-pickers">
+                <div class="grid-colors">
+                  <input type="color" value="#000000" id="tool-color-grid">
+                  <label for="tool-color-grid">Tool color</label>
+                </div>
+                <div class="grid-colors">
+                  <input type="color" value="#ffffff" id="bg-color-grid">
+                  <label for="tool-color-grid">Background color</label>
+                </div>
+              </div>
+              <!-- Submit Button canvas -->
+              <input type="submit" value="CREATE CANVAS" id="create-canvas-btn">
+            </form>
           </div>
         </main>
         <!-- Tools Bar -->
