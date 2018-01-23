@@ -128,6 +128,8 @@ $(function() {
   });
 
   function makeGrid() {
+    heightCanvas = HEIGHT_INPUT.val();
+    widthCanvas = WIDTH_INPUT.val();
     for (let i = 0; i < heightCanvas; i++) {
       CANVAS_TABLE.append('<tr></tr>');
       for (let j = 0; j < widthCanvas; j++) {
