@@ -8,6 +8,7 @@ $(function() {
   const CREATE_GRID_POPUP = $('#create-grid-popup');
   const WIDTH_INPUT = $('#width-input');
   const HEIGHT_INPUT = $('#height-input');
+  const BG_COLOR_GRID = $('#bg-color-grid');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
@@ -123,6 +124,7 @@ $(function() {
     CREATE_GRID_POPUP.addClass('hidden');
     CANVAS_TABLE.removeClass('hidden');
     makeGrid();
+    CANVAS_TABLE.css('background-color', BG_COLOR_GRID.val());
   });
 
   function makeGrid() {
