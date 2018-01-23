@@ -2,7 +2,17 @@
 $(function() {
   /* Variables DOM */
   const WORKSPACE_SELECT = $('#workspaces-select');
+  const CREATE_GRID_BTN = $('#create-grid-btn');
 
+  /* Open Build Grid Popup */
+CREATE_GRID_BTN.click(function() {
+  const CREATE_GRID_POPUP = $('#create-grid-popup');
+
+  CREATE_GRID_BTN.addClass('hidden');
+  CREATE_GRID_POPUP.removeClass('hidden');
+});
+
+  /* Workspace choice */
   $(WORKSPACE_SELECT).change(function() {
     changeWorkspace();
   });
@@ -42,7 +52,6 @@ $(function() {
 
     switch(elementSelected.attr('value')) {
       case 'default':
-        
       break;
       case 'left':
         TOOLS_BAR.addClass('left-ws');
