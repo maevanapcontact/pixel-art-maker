@@ -251,6 +251,33 @@ a {
   cursor: pointer;
 }
 
+/* MAIN MENU */
+.main-menu {
+  width: 250px;
+  background: #535353;
+  border: 3px solid #e9722a;
+  border-bottom: none;
+  position: fixed;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 900;
+}
+
+.main-menu li {
+  height: 30px;
+  padding: 5px 10px;
+  border-bottom: 3px solid #e9722a;
+}
+
+.main-menu li:hover {
+  background: #363636;
+  cursor: pointer;
+  color: #e9722a;
+}
+
 /* TOOLS BAR */
 .tools-bar {
   position: fixed;
@@ -396,6 +423,11 @@ a {
   /* MAIN NAV BAR */
   #workspaces-form #workspaces-select {
     font-size: 0.8em;
+  }
+
+  /* MAIN MENU */
+  .main-menu {
+    top: 55px;
   }
 
   /* TOOLS BAR */
