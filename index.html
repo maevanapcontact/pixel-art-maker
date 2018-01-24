@@ -82,7 +82,7 @@
         <!-- Main Content -->
         <main class="main-content">
           <!-- Create Grid Button -->
-          <div class="create-grid-btn" id="create-grid-btn">
+          <div class="create-grid-btn hidden" id="create-grid-btn">
             <i class="fas fa-plus-circle"></i>
           </div>
           <!-- Create grid popup -->
@@ -131,7 +131,8 @@
           </table>
           <!-- Main menu -->
           <div class="main-menu hidden" id="main-menu">
-            <ul class="main-menu-list">
+            <!-- List items main menu -->
+            <ul class="main-menu-list" id="main-menu-list">
               <li class="main-menu-new">New</li>
               <li class="disabled-text main-menu-open">Open</li>
               <li class="disabled-text main-menu-save">Save</li>
@@ -139,6 +140,20 @@
               <li class="main-menu-set">Settings</li>
               <li class="main-menu-close">Close</li>
             </ul>
+            <!-- Popup settings -->
+            <div class="settings-popup hidden" id="settings-popup">
+              <div class="settings-item">
+                <label for="settigs-grid-color">Grid Color</label>
+                <input type="color" value="#000000" id="settigs-grid-color">
+              </div>
+              <div class="settings-item">
+                <label for="settings-cell-size">Cell Sizes</label>
+                <input id="settings-cell-size" name="settings-cell-size" type="number" value="20" min="1" max="60">
+              </div>
+              <div class="settings-item">
+                <input type="submit" value="SAVE" class="settings-save">
+              </div>
+            </div>
           </div>
         </main>
         <!-- Tools Bar -->

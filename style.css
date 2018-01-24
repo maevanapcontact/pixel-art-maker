@@ -285,6 +285,75 @@ a {
   color: #e9722a;
 }
 
+/* SETTINGS MENU */
+.settings-popup {
+  border-bottom: 3px solid #e9722a;
+  padding: 5px 10px;
+}
+
+.settings-item {
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-item label {
+  margin: 0 10px 0 0;
+}
+
+.settings-item:nth-child(1) {
+  border-bottom: 3px solid #e9722a;
+}
+
+#settigs-grid-color {
+  width: 32px;
+  height: 32px;
+  -webkit-appearance: none;
+  border: none;
+  margin: 0 10px 0 0;
+  border-radius: 5px;
+}
+
+#settigs-grid-color:hover {
+  cursor: pointer;
+}
+
+#settigs-grid-color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+#settigs-grid-color::-webkit-color-swatch {
+  border: 3px solid #272727;
+  border-radius: 5px;
+}
+
+#settings-cell-size {
+  background: #747474;
+  border: 3px solid #e9722a;
+  margin: auto;
+  padding: 5px 2%;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.settings-save {
+  background: #e9722a;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  border: 3px solid #272727;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.settings-save:hover {
+  background: #272727;
+  border-color: #e9722a;
+  cursor: pointer;
+}
+
 /* TOOLS BAR */
 .tools-bar {
   position: fixed;

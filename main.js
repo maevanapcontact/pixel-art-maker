@@ -34,21 +34,25 @@ $(function() {
           CANVAS_TABLE.addClass('hidden');
         }
         CREATE_GRID_POPUP.removeClass('hidden');
+        MAIN_MENU.addClass('hidden');
       break;
       case 'main-menu-open':
+        MAIN_MENU.addClass('hidden');
       break;
       case 'main-menu-save':
+        MAIN_MENU.addClass('hidden');
       break;
       case 'main-menu-dl':
+        MAIN_MENU.addClass('hidden');
       break;
       case 'main-menu-set':
+        MAIN_MENU.addClass('hidden');
       break;
       case 'main-menu-close':
         location.reload();
       break;
     }
 
-    MAIN_MENU.addClass('hidden');
   });
 
   // Open Build Grid Popup
