@@ -186,6 +186,7 @@ $(function() {
   });
 
   function makeGrid() {
+    removeGrid();
     heightCanvas = HEIGHT_INPUT.val();
     widthCanvas = WIDTH_INPUT.val();
     for (let i = 0; i < heightCanvas; i++) {
@@ -193,6 +194,13 @@ $(function() {
       for (let j = 0; j < widthCanvas; j++) {
         $('tr').last().append('<td></td>');
       }
+    }
+  }
+
+  // Remove the grid
+  function removeGrid() {
+    while ($('tr').length) {
+      $('tr').remove();
     }
   }
 });
