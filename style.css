@@ -532,6 +532,23 @@ a {
     height: 24px;
 }
 
+/* LEFT WORKSPACE MOBILE < 480PX */
+@media screen and (max-width: 480px) {
+  .tools-bar.left-ws {
+    top: 55px;
+  }
+
+  .tools-bar-item.left-ws #zoom-input::-webkit-slider-thumb {
+      width: 16px;
+      height: 16px;
+  }
+
+  .tools-bar-item.left-ws,
+  .main-tools.left-ws {
+    margin: 2px 0;
+  }
+}
+
 
 /* HIDDEN */
 .full-website .hidden {
