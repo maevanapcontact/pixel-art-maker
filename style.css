@@ -458,6 +458,7 @@ a {
 /* -------------------------------------------- */
 .tools-bar.left-ws {
   position: absolute;
+  position: fixed;
   top: 70px;
   left: 0;
   width: 90px;
