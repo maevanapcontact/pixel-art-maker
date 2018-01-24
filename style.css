@@ -403,6 +403,39 @@ a {
     flex-direction: column;
   }
 
+  .tools-bar-inside {
+    padding: 5px 2px;
+  }
+
+  .tools-bar-inside .color-item {
+    height: 1.5em;
+    width: 1.5em;
+    background: #fff;
+    border: 1px solid #272727;
+  }
+
+  .tools-bar-inside .color-picker-block {
+    height: 2.5em;
+    width: 2.5em;
+    background: none;
+    border: none;
+  }
+
+  .fa-paint-brush,
+  .fa-eraser,
+  .fa-tint,
+  .fa-eye-dropper,
+  .fa-ban,
+  .fa-file,
+  .fa-ellipsis-h {
+    font-size: 1.5em;
+  }
+
+  .tools-bar-item #zoom-input::-webkit-slider-thumb {
+      width: 16px;
+      height: 16px;
+  }
+
   .fa-plus,
   .fa-minus {
     font-size: 1.2em;
@@ -414,7 +447,7 @@ a {
 
   .main-tools .tools-bar-item {
     width: 100%;
-    margin: 10px 0;
+    margin: 5px 0;
   }
 
   #zoom-form {
