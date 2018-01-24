@@ -11,6 +11,11 @@ $(function() {
   const BG_COLOR_GRID = $('#bg-color-grid');
   const MAIN_MENU_BTN = $('#main-menu-btn');
   const MAIN_MENU = $('#main-menu');
+  const SETTINGS_POPUP = $('#settings-popup');
+  const MAIN_MENU_LIST = $('#main-menu-list');
+  const SETTINGS_GRID_COLOR = $('#settigs-grid-color');
+  const SETTINGS_CELL_SIZE = $('#settings-cell-size');
+  const SETTINGS_SAVE = $('#settings-save');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
@@ -46,13 +51,25 @@ $(function() {
         MAIN_MENU.addClass('hidden');
       break;
       case 'main-menu-set':
-        MAIN_MENU.addClass('hidden');
+        MAIN_MENU_LIST.addClass('hidden');
+        SETTINGS_POPUP.removeClass('hidden');
       break;
       case 'main-menu-close':
         location.reload();
       break;
     }
+  });
 
+  // Change color grid itself
+  SETTINGS_GRID_COLOR.change(function() {
+    $('.canvas-table td').css('border-color', SETTINGS_GRID_COLOR.val());
+  });
+
+  // Change cells size
+  SETTINGS_SAVE.click(function() {
+    MAIN_MENU.addClass('hidden');
+    $('.canvas-table td').css('width', SETTINGS_CELL_SIZE.val() + 'px');
+    $('.canvas-table td').css('height', SETTINGS_CELL_SIZE.val() + 'px');
   });
 
   // Open Build Grid Popup
