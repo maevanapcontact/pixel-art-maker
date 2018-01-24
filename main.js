@@ -21,6 +21,36 @@ $(function() {
     MAIN_MENU.toggleClass('hidden');
   });
 
+  // Open "New" On main menu
+  MAIN_MENU.click(function(event) {
+    let elementClicked = event.target;
+
+    switch(elementClicked.className) {
+      case 'main-menu-new':
+        if (!CREATE_GRID_BTN.hasClass('hidden')) {
+          CREATE_GRID_BTN.addClass('hidden');
+        }
+        if (!CANVAS_TABLE.hasClass('hidden')) {
+          CANVAS_TABLE.addClass('hidden');
+        }
+        CREATE_GRID_POPUP.removeClass('hidden');
+      break;
+      case 'main-menu-open':
+      break;
+      case 'main-menu-save':
+      break;
+      case 'main-menu-dl':
+      break;
+      case 'main-menu-set':
+      break;
+      case 'main-menu-close':
+        location.reload();
+      break;
+    }
+
+    MAIN_MENU.addClass('hidden');
+  });
+
   // Open Build Grid Popup
   CREATE_GRID_BTN.click(function() {
     CREATE_GRID_BTN.addClass('hidden');

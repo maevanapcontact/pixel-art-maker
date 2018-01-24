@@ -265,6 +265,7 @@ a {
   color: #fff;
   font-weight: 900;
   z-index: 1000;
+  text-shadow: 2px 2px #000;
 }
 
 .main-menu ul {
@@ -591,4 +592,15 @@ a {
 /* HIDDEN */
 .full-website .hidden {
   display: none;
+}
+
+/* DISBABLED */
+.main-menu .disabled-text {
+  color: #a3a3a3;
+}
+
+.main-menu .disabled-text:hover {
+  background: #535353;
+  color: #a3a3a3;
+  cursor: default;
 }
