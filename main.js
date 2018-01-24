@@ -16,6 +16,7 @@ $(function() {
   const SETTINGS_GRID_COLOR = $('#settigs-grid-color');
   const SETTINGS_CELL_SIZE = $('#settings-cell-size');
   const SETTINGS_SAVE = $('#settings-save');
+  const MAIN_MENU_SET = $('#main-menu-set');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
@@ -24,6 +25,10 @@ $(function() {
   // Open main menu
   MAIN_MENU_BTN.click(function() {
     MAIN_MENU.toggleClass('hidden');
+    if (MAIN_MENU_LIST.hasClass('hidden')) {
+      MAIN_MENU_LIST.removeClass('hidden')
+      SETTINGS_POPUP.addClass('hidden');
+    }
   });
 
   // Open "New" On main menu
@@ -68,6 +73,8 @@ $(function() {
   // Change cells size
   SETTINGS_SAVE.click(function() {
     MAIN_MENU.addClass('hidden');
+    SETTINGS_POPUP.addClass('hidden');
+    MAIN_MENU_LIST.removeClass('hidden');
     $('.canvas-table td').css('width', SETTINGS_CELL_SIZE.val() + 'px');
     $('.canvas-table td').css('height', SETTINGS_CELL_SIZE.val() + 'px');
   });
@@ -187,14 +194,18 @@ $(function() {
 
   function makeGrid() {
     removeGrid();
+
     heightCanvas = HEIGHT_INPUT.val();
     widthCanvas = WIDTH_INPUT.val();
+
     for (let i = 0; i < heightCanvas; i++) {
       CANVAS_TABLE.append('<tr></tr>');
       for (let j = 0; j < widthCanvas; j++) {
         $('tr').last().append('<td></td>');
       }
     }
+
+    MAIN_MENU_SET.removeClass('disabled-text');
   }
 
   // Remove the grid
