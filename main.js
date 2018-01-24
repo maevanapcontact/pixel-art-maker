@@ -94,26 +94,26 @@ $(function() {
       case '8':
         heightCanvas = 8;
         widthCanvas = 8;
-        HEIGHT_INPUT.attr('value', '8');
-        WIDTH_INPUT.attr('value', '8');
+        HEIGHT_INPUT.val('8');
+        WIDTH_INPUT.val('8');
       break;
       case '16':
         heightCanvas = 16;
         widthCanvas = 16;
-        HEIGHT_INPUT.attr('value', '16');
-        WIDTH_INPUT.attr('value', '16');
+        HEIGHT_INPUT.val('16');
+        WIDTH_INPUT.val('16');
       break;
       case '32':
         heightCanvas = 32;
         widthCanvas = 32;
-        HEIGHT_INPUT.attr('value', '32');
-        WIDTH_INPUT.attr('value', '32');
+        HEIGHT_INPUT.val('32');
+        WIDTH_INPUT.val('32');
       break;
       case '64':
         heightCanvas = 64;
         widthCanvas = 64;
-        HEIGHT_INPUT.attr('value', '64');
-        WIDTH_INPUT.attr('value', '64');
+        HEIGHT_INPUT.val('64');
+        WIDTH_INPUT.val('64');
       break;
     }
   }
