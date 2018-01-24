@@ -9,10 +9,17 @@ $(function() {
   const WIDTH_INPUT = $('#width-input');
   const HEIGHT_INPUT = $('#height-input');
   const BG_COLOR_GRID = $('#bg-color-grid');
+  const MAIN_MENU_BTN = $('#main-menu-btn');
+  const MAIN_MENU = $('#main-menu');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
   let heightCanvas = HEIGHT_INPUT.val();
+
+  // Open main menu
+  MAIN_MENU_BTN.click(function() {
+    MAIN_MENU.toggleClass('hidden');
+  });
 
   // Open Build Grid Popup
   CREATE_GRID_BTN.click(function() {

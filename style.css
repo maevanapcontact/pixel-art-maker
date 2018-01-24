@@ -264,6 +264,12 @@ a {
   text-transform: uppercase;
   color: #fff;
   font-weight: 900;
+  z-index: 1000;
+}
+
+.main-menu ul {
+  padding: 0;
+  list-style: none;
 }
 
 .main-menu li {
