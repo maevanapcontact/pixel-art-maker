@@ -31,6 +31,9 @@ $(function() {
   let widthCanvas = WIDTH_INPUT.val();
   let heightCanvas = HEIGHT_INPUT.val();
 
+  // Variables for tools
+  let mouseState = false;
+
   // Open main menu
   MAIN_MENU_BTN.click(function() {
     MAIN_MENU.toggleClass('hidden');
@@ -262,7 +265,7 @@ $(function() {
     for (let i = 0; i < heightCanvas; i++) {
       CANVAS_TABLE.append('<tr></tr>');
       for (let j = 0; j < widthCanvas; j++) {
-        $('tr').last().append('<td></td>');
+        $('tr').last().append('<td class="cell-click"></td>');
       }
     }
 
@@ -275,4 +278,26 @@ $(function() {
       $('tr').remove();
     }
   }
+
+  // Check the state of the cursor
+  $(document).mousedown(function(event) {
+    mouseState = true;
+  });
+
+  $(document).mouseup(function(event) {
+    mouseState = false;
+  });
+
+  // Use tools on the grid
+  $(document).on('click', '#canvas-table td', function() {
+    $(this).css('background-color', 'red');
+  });
+
+  $(document).on('mouseenter', '#canvas-table td', function() {
+    if (mouseState) {
+      $(this).css('background-color', 'red');
+    } else {
+
+    }
+  });
 });
