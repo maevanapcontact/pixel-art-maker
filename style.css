@@ -354,6 +354,38 @@ a {
   cursor: pointer;
 }
 
+/* COLOR PALETTE MENU */
+.color-palette-menu {
+  width: 250px;
+  background: #535353;
+  border: 3px solid #e9722a;
+  position: fixed;
+  position: absolute;
+  bottom: 150px;
+  left: 50%;
+  transform: translate(-50%);
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 900;
+  z-index: 1000;
+  text-shadow: 2px 2px #000;
+}
+
+.color-palette-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.color-palette-menu li {
+  padding: 10px;
+}
+
+.color-palette-menu li:hover {
+  cursor: pointer;
+  color: #e9722a;
+}
+
+
 /* TOOLS BAR */
 .tools-bar {
   position: fixed;
