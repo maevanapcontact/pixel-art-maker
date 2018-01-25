@@ -24,6 +24,8 @@ $(function() {
   const COLOR_ITEM_3 = $('#color-item-3');
   const COLOR_ITEM_4 = $('#color-item-4');
   const ITEMS_ESSENTIALS_WS = $('#items-essential-ws');
+  const LAYER_BTN = $('#layer-btn');
+  const LAYER_POPUP = $('#layer-popup');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
@@ -138,6 +140,11 @@ $(function() {
         COLOR_PALETTE_MENU.addClass('hidden');
       break;
     }
+  });
+
+  // Open / Close layer button
+  LAYER_BTN.click(function() {
+    LAYER_POPUP.toggleClass('hidden');
   });
 
   // Workspace choice
