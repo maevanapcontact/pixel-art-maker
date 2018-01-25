@@ -17,6 +17,12 @@ $(function() {
   const SETTINGS_CELL_SIZE = $('#settings-cell-size');
   const SETTINGS_SAVE = $('#settings-save');
   const MAIN_MENU_SET = $('#main-menu-set');
+  const PALETTE_BTN = $('#palette-btn');
+  const COLOR_PALETTE_MENU = $('#color-palette-menu');
+  const COLOR_ITEM_1 = $('#color-item-1');
+  const COLOR_ITEM_2 = $('#color-item-2');
+  const COLOR_ITEM_3 = $('#color-item-3');
+  const COLOR_ITEM_4 = $('#color-item-4');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
@@ -88,6 +94,11 @@ $(function() {
   // Workspace choice
   $(WORKSPACE_SELECT).change(function() {
     changeWorkspace();
+  });
+
+  // Open palette popup
+  PALETTE_BTN.click(function() {
+    COLOR_PALETTE_MENU.toggleClass('hidden');
   });
 
   function changeWorkspace() {
