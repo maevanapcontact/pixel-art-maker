@@ -849,6 +849,9 @@ a {
 }
 
 /* SELECTED TOOL */
-.selected-tool {
+.selected-tool .fa-paint-brush,
+.selected-tool .fa-eraser,
+.selected-tool .fa-tint,
+.selected-tool .fa-eye-dropper {
   color: #e9722a;
 }

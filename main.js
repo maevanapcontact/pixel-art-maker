@@ -37,6 +37,16 @@ $(function() {
   let bgColor;
   let toolColor;
 
+  // Variables TOOLS
+  const BRUSH = $('#brush');
+  const BRUSH_ESSENTIAL = $('#brush-essential');
+  const ERASER = $('#eraser');
+  const ERASER_ESSENTIAL = $('#eraser-essential');
+  const FILL = $('#fill');
+  const FILL_ESSENTIAL = $('#fill-essential');
+  const EYEDROPPER = $('#eyedropper');
+  const EYEDROPPER_ESSENTIAL = $('#eyedropper-essential');
+
   // Variables for tools
   let mouseState = false;
 
@@ -277,9 +287,6 @@ $(function() {
     CANVAS_TABLE.css('background-color', bgColor);
     BACK_COLOR.val(bgColor);
     TOOL_COLOR.val(toolColor);
-
-    // Select the brush tool
-    $('.fa-paint-brush').addClass('selected-tool');
   });
 
   function makeGrid() {
@@ -305,6 +312,67 @@ $(function() {
     }
   }
 
+  // Remove all the selected tools
+  function removeSelectedTools() {
+    BRUSH.removeClass('selected-tool');
+    BRUSH_ESSENTIAL.removeClass('selected-tool');
+    ERASER.removeClass('selected-tool');
+    ERASER_ESSENTIAL.removeClass('selected-tool');
+    FILL.removeClass('selected-tool');
+    FILL_ESSENTIAL.removeClass('selected-tool');
+    EYEDROPPER.removeClass('selected-tool');
+    EYEDROPPER_ESSENTIAL.removeClass('selected-tool');
+  }
+
+  // Click on the tools
+  BRUSH.click(function() {
+    removeSelectedTools();
+    BRUSH.addClass('selected-tool');
+    BRUSH_ESSENTIAL.addClass('selected-tool');
+  });
+
+  BRUSH_ESSENTIAL.click(function() {
+    removeSelectedTools();
+    BRUSH.addClass('selected-tool');
+    BRUSH_ESSENTIAL.addClass('selected-tool');
+  });
+
+  ERASER.click(function() {
+    removeSelectedTools();
+    ERASER.addClass('selected-tool');
+    ERASER_ESSENTIAL.addClass('selected-tool');
+  });
+
+  ERASER_ESSENTIAL.click(function() {
+    removeSelectedTools();
+    ERASER.addClass('selected-tool');
+    ERASER_ESSENTIAL.addClass('selected-tool');
+  });
+
+  FILL.click(function() {
+    removeSelectedTools();
+    FILL.addClass('selected-tool');
+    FILL_ESSENTIAL.addClass('selected-tool');
+  });
+
+  FILL_ESSENTIAL.click(function() {
+    removeSelectedTools();
+    FILL.addClass('selected-tool');
+    FILL_ESSENTIAL.addClass('selected-tool');
+  });
+
+  EYEDROPPER.click(function() {
+    removeSelectedTools();
+    EYEDROPPER.addClass('selected-tool');
+    EYEDROPPER_ESSENTIAL.addClass('selected-tool');
+  });
+
+  EYEDROPPER_ESSENTIAL.click(function() {
+    removeSelectedTools();
+    EYEDROPPER.addClass('selected-tool');
+    EYEDROPPER_ESSENTIAL.addClass('selected-tool');
+  });
+
   // Check the state of the cursor
   $(document).mousedown(function(event) {
     mouseState = true;
@@ -316,12 +384,16 @@ $(function() {
 
   // Use tools on the grid
   $(document).on('click', '#canvas-table td', function() {
-    $(this).css('background-color', 'red');
+    $(this).css('background-color', toolColor);
   });
 
   $(document).on('mouseenter', '#canvas-table td', function() {
-    if (mouseState) {
-      $(this).css('background-color', toolColor);
+    let selectedTool = $('.selected-tool');
+
+    if (selectedTool.hasClass('fa-paint-brush')) {
+      if (mouseState) {
+        $(this).css('background-color', toolColor);
+      }
     }
   });
 });
