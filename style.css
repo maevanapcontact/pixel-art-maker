@@ -520,6 +520,10 @@ a {
     display: none;
   }
 
+  #workspaces-form #workspaces-select {
+    font-size: 0.8em;
+  }
+
   /* COLOR PALETTE POPUP */
   .color-palette-menu {
     bottom: 135px;
@@ -588,11 +592,6 @@ a {
 
 /* RESPONSIVE MEDIUM 480PX */
 @media screen and (max-width: 480px) {
-  /* MAIN NAV BAR */
-  #workspaces-form #workspaces-select {
-    font-size: 0.8em;
-  }
-
   /* MAIN MENU */
   .main-menu {
     top: 55px;
@@ -630,6 +629,17 @@ a {
   color: #e9722a;
 }
 
+.items-essential-ws .fa-undo-alt {
+  font-size: 2em;
+}
+
+/* ESSENTIAL WORKSPACE TABLET < 767PX */
+/* -------------------------------------------- */
+@media screen and (max-width: 767px) {
+  .items-essential-ws .fa-undo-alt {
+    font-size: 1.5em;
+  }
+}
 
 /* LEFT WORKSPACE DESKTOP */
 /* -------------------------------------------- */

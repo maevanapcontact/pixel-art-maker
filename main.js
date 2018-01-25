@@ -23,6 +23,7 @@ $(function() {
   const COLOR_ITEM_2 = $('#color-item-2');
   const COLOR_ITEM_3 = $('#color-item-3');
   const COLOR_ITEM_4 = $('#color-item-4');
+  const ITEMS_ESSENTIALS_WS = $('#items-essential-ws');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
@@ -91,11 +92,6 @@ $(function() {
     CREATE_GRID_POPUP.removeClass('hidden');
   });
 
-  // Workspace choice
-  $(WORKSPACE_SELECT).change(function() {
-    changeWorkspace();
-  });
-
   // Open palette popup
   PALETTE_BTN.click(function() {
     COLOR_PALETTE_MENU.toggleClass('hidden');
@@ -144,6 +140,10 @@ $(function() {
     }
   });
 
+  // Workspace choice
+  $(WORKSPACE_SELECT).change(function() {
+    changeWorkspace();
+  });
 
   function changeWorkspace() {
     let elementSelected = $('#workspaces-select option:selected');
@@ -157,7 +157,6 @@ $(function() {
     const TOOLS_BAR_INSIDE = $('#tools-bar-inside');
     const FA_PLUS_TOOL = $('#tools-bar-item-1 .fa-plus');
     const FA_MINUS_TOOL = $('#tools-bar-item-1 .fa-minus');
-    const ITEMS_ESSENTIALS_WS = $('#items-essential-ws');
     const MAIN_TITLE = $('#main-title');
     const ICON_CLICK_UNDO = $('#icon-click-undo');
     const ICON_CLICK_REDO = $('#icon-click-redo');
