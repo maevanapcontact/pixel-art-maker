@@ -794,8 +794,20 @@ a {
   height: 24px;
 }
 
-/* LEFT WORKSPACE MOBILE < 480PX */
-@media screen and (max-width: 480px) {
+.color-palette-menu.left-ws {
+  top: 70px;
+  bottom: auto;
+  left: 220px;
+}
+
+.layer-popup.left-ws {
+  top: 70px;
+  bottom: auto;
+  left: 220px;
+}
+
+/* LEFT WORKSPACE MOBILE < 767PX */
+@media screen and (max-width: 767px) {
   .tools-bar.left-ws {
     top: 55px;
   }
@@ -808,6 +820,14 @@ a {
   .tools-bar-item.left-ws,
   .main-tools.left-ws {
     margin: 2px 0;
+  }
+
+  .color-palette-menu.left-ws {
+    top: 55px;
+  }
+
+  .layer-popup.left-ws {
+    top: 55px;
   }
 }
 

@@ -192,6 +192,8 @@ $(function() {
     ICON_CLICK_UNDO.removeClass('hidden');
     ICON_CLICK_REDO.removeClass('hidden');
     TOOLS_BAR.removeClass('hidden');
+    LAYER_POPUP.removeClass('left-ws')
+    COLOR_PALETTE_MENU.removeClass('left-ws');
 
     switch(elementSelected.attr('value')) {
       case 'default':
@@ -206,6 +208,8 @@ $(function() {
         TOOLS_BAR_INSIDE.addClass('left-ws');
         FA_PLUS_TOOL.addClass('hidden');
         FA_MINUS_TOOL.addClass('hidden');
+        LAYER_POPUP.addClass('left-ws')
+        COLOR_PALETTE_MENU.addClass('left-ws');
       break;
       case 'essentials':
         ITEMS_ESSENTIALS_WS.removeClass('hidden');
@@ -213,6 +217,8 @@ $(function() {
         ICON_CLICK_UNDO.addClass('hidden');
         ICON_CLICK_REDO.addClass('hidden');
         TOOLS_BAR.addClass('hidden');
+        LAYER_POPUP.addClass('hidden');
+        COLOR_PALETTE_MENU.addClass('hidden');
       break;
     }
   }
