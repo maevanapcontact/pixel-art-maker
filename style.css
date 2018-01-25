@@ -406,6 +406,7 @@ a {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 #zoom-form {
@@ -519,23 +520,9 @@ a {
     display: none;
   }
 
-  /* TOOLS BAR */
-  .main-tools {
-    width: 100%;
-  }
-}
-
-
-/* RESPONSIVE MEDIUM 480PX */
-@media screen and (max-width: 480px) {
-  /* MAIN NAV BAR */
-  #workspaces-form #workspaces-select {
-    font-size: 0.8em;
-  }
-
-  /* MAIN MENU */
-  .main-menu {
-    top: 55px;
+  /* COLOR PALETTE POPUP */
+  .color-palette-menu {
+    bottom: 135px;
   }
 
   /* TOOLS BAR */
@@ -545,6 +532,9 @@ a {
 
   .tools-bar-inside {
     padding: 5px 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .tools-bar-inside .color-item {
@@ -592,6 +582,20 @@ a {
 
   #zoom-form {
     width: 70%;
+  }
+}
+
+
+/* RESPONSIVE MEDIUM 480PX */
+@media screen and (max-width: 480px) {
+  /* MAIN NAV BAR */
+  #workspaces-form #workspaces-select {
+    font-size: 0.8em;
+  }
+
+  /* MAIN MENU */
+  .main-menu {
+    top: 55px;
   }
 }
 
