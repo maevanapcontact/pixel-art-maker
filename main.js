@@ -101,6 +101,50 @@ $(function() {
     COLOR_PALETTE_MENU.toggleClass('hidden');
   });
 
+  // Change preset colors
+  COLOR_PALETTE_MENU.click(function(event) {
+    let elementClicked = event.target;
+
+    switch (elementClicked.className) {
+      case 'palette-1':
+        COLOR_ITEM_1.css('background-color', '#cda450');
+        COLOR_ITEM_2.css('background-color', '#e9e9dc');
+        COLOR_ITEM_3.css('background-color', '#646c49');
+        COLOR_ITEM_4.css('background-color', '#393f28');
+        COLOR_PALETTE_MENU.addClass('hidden');
+      break;
+      case 'palette-2':
+        COLOR_ITEM_1.css('background-color', '#955e60');
+        COLOR_ITEM_2.css('background-color', '#646f62');
+        COLOR_ITEM_3.css('background-color', '#b2463d');
+        COLOR_ITEM_4.css('background-color', '#3d3d3d');
+        COLOR_PALETTE_MENU.addClass('hidden');
+      break;
+      case 'palette-3':
+        COLOR_ITEM_1.css('background-color', '#6b7c8f');
+        COLOR_ITEM_2.css('background-color', '#f7892f');
+        COLOR_ITEM_3.css('background-color', '#fac231');
+        COLOR_ITEM_4.css('background-color', '#dcc8aa');
+        COLOR_PALETTE_MENU.addClass('hidden');
+      break;
+      case 'palette-4':
+        COLOR_ITEM_1.css('background-color', '#2c6da9');
+        COLOR_ITEM_2.css('background-color', '#cf5261');
+        COLOR_ITEM_3.css('background-color', '#b57d4e');
+        COLOR_ITEM_4.css('background-color', '#45859b');
+        COLOR_PALETTE_MENU.addClass('hidden');
+      break;
+      case 'palette-5':
+        COLOR_ITEM_1.css('background-color', '#e47122');
+        COLOR_ITEM_2.css('background-color', '#09899e');
+        COLOR_ITEM_3.css('background-color', '#64babf');
+        COLOR_ITEM_4.css('background-color', '#f1aa7e');
+        COLOR_PALETTE_MENU.addClass('hidden');
+      break;
+    }
+  });
+
+
   function changeWorkspace() {
     let elementSelected = $('#workspaces-select option:selected');
 
