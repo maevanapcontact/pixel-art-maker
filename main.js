@@ -9,6 +9,7 @@ $(function() {
   const WIDTH_INPUT = $('#width-input');
   const HEIGHT_INPUT = $('#height-input');
   const BG_COLOR_GRID = $('#bg-color-grid');
+  const TOOL_COLOR_GRID = $('#tool-color-grid');
   const MAIN_MENU_BTN = $('#main-menu-btn');
   const MAIN_MENU = $('#main-menu');
   const SETTINGS_POPUP = $('#settings-popup');
@@ -26,10 +27,15 @@ $(function() {
   const ITEMS_ESSENTIALS_WS = $('#items-essential-ws');
   const LAYER_BTN = $('#layer-btn');
   const LAYER_POPUP = $('#layer-popup');
+  const BACK_COLOR = $('#back-color');
+  const TOOL_COLOR = $('#tool-color');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
   let heightCanvas = HEIGHT_INPUT.val();
+
+  let bgColor;
+  let toolColor;
 
   // Variables for tools
   let mouseState = false;
@@ -250,10 +256,24 @@ $(function() {
   // Build the Grid
   CREATE_CANVAS_FORM.submit(function(event) {
     event.preventDefault();
+
+    // Show good popups
     CREATE_GRID_POPUP.addClass('hidden');
     CANVAS_TABLE.removeClass('hidden');
+
+    // Build the grid
     makeGrid();
-    CANVAS_TABLE.css('background-color', BG_COLOR_GRID.val());
+
+    // Setup the grid
+    bgColor = BG_COLOR_GRID.val();
+    toolColor = TOOL_COLOR_GRID.val();
+
+    CANVAS_TABLE.css('background-color', bgColor);
+    BACK_COLOR.val(bgColor);
+    TOOL_COLOR.val(toolColor);
+
+    // Select the brush tool
+    $('.fa-paint-brush').addClass('selected-tool');
   });
 
   function makeGrid() {
@@ -295,9 +315,7 @@ $(function() {
 
   $(document).on('mouseenter', '#canvas-table td', function() {
     if (mouseState) {
-      $(this).css('background-color', 'red');
-    } else {
-
+      $(this).css('background-color', toolColor);
     }
   });
 });
