@@ -321,6 +321,16 @@ $(function() {
     }
   }
 
+  // Change colours of the colours pickers
+  TOOL_COLOR.change(function() {
+    toolColor = TOOL_COLOR.val();
+  });
+
+  BACK_COLOR.change(function() {
+    bgColor = BACK_COLOR.val();
+    CANVAS_TABLE.css('background-color', bgColor);
+  });
+
   // Remove all the selected tools
   function removeSelectedTools() {
     BRUSH.removeClass('selected-tool');
@@ -401,15 +411,29 @@ $(function() {
 
   // Use tools on the grid
   $(document).on('click', '#canvas-table td', function() {
+    let bgColorAttribute = $(this).attr('bgcolor');
+    let tableColorAttribute = CANVAS_TABLE.css('background-color');
+
     switch (currentTool) {
       case 'brush':
-        $(this).css('background-color', toolColor);
+        $(this).attr('bgcolor', toolColor);
       break;
       case 'eraser':
-        $(this).css('background-color', '');
+        $(this).attr('bgcolor', '');
       break;
       case 'fill':
-        $('td').css('background-color', toolColor);
+        $('td').attr('bgcolor', toolColor);
+      break;
+      case 'eyedropper':
+        if (typeof bgColorAttribute !== typeof undefined &&
+          bgColorAttribute !== false) {
+            TOOL_COLOR.val(bgColorAttribute);
+            toolColor = TOOL_COLOR.val();
+        } else {
+          let tableColorAttributeHex = rgbToHex(tableColorAttribute);
+          TOOL_COLOR.val(tableColorAttributeHex);
+          toolColor = TOOL_COLOR.val();
+        }
       break;
     }
   });
@@ -419,10 +443,10 @@ $(function() {
     if (mouseState) {
       switch (currentTool) {
         case 'brush':
-          $(this).css('background-color', toolColor);
+          $(this).attr('bgcolor', toolColor);
         break;
         case 'eraser':
-          $(this).css('background-color', '');
+          $(this).attr('bgcolor', '');
         break;
       }
     }
