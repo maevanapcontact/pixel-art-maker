@@ -29,6 +29,9 @@ $(function() {
   const LAYER_POPUP = $('#layer-popup');
   const BACK_COLOR = $('#back-color');
   const TOOL_COLOR = $('#tool-color');
+  const MAIN_MENU_SAVE = $('#main-menu-save');
+  const CONTAINER_CANVAS = $('#container-canvas');
+  const MAIN_MENU_OPEN = $('#main-menu-open');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
@@ -50,6 +53,8 @@ $(function() {
 
   let currentTool = 'brush';
   let mouseState = false;
+
+  let saveCanvas;
 
   // Convert RGB to HEX
   function rgbToHex(rgbValue) {
@@ -86,9 +91,15 @@ $(function() {
       break;
       case 'main-menu-open':
         MAIN_MENU.addClass('hidden');
+        CONTAINER_CANVAS.empty();
+        console.log(saveCanvas);
+        CONTAINER_CANVAS.html(saveCanvas);
       break;
       case 'main-menu-save':
         MAIN_MENU.addClass('hidden');
+        saveCanvas = CONTAINER_CANVAS.html();
+        console.log(saveCanvas);
+        MAIN_MENU_OPEN.removeClass('disabled-text');
       break;
       case 'main-menu-dl':
         MAIN_MENU.addClass('hidden');
@@ -313,6 +324,7 @@ $(function() {
     }
 
     MAIN_MENU_SET.removeClass('disabled-text');
+    MAIN_MENU_SAVE.removeClass('disabled-text');
   }
 
   // Remove the grid
