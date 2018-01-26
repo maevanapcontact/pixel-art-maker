@@ -47,6 +47,8 @@ $(function() {
   const EYEDROPPER = $('#eyedropper');
   const EYEDROPPER_ESSENTIAL = $('#eyedropper-essential');
 
+  let currentTool = 'brush';
+
   // Variables for tools
   let mouseState = false;
 
@@ -329,48 +331,56 @@ $(function() {
     removeSelectedTools();
     BRUSH.addClass('selected-tool');
     BRUSH_ESSENTIAL.addClass('selected-tool');
+    currentTool = 'brush';
   });
 
   BRUSH_ESSENTIAL.click(function() {
     removeSelectedTools();
     BRUSH.addClass('selected-tool');
     BRUSH_ESSENTIAL.addClass('selected-tool');
+    currentTool = 'brush';
   });
 
   ERASER.click(function() {
     removeSelectedTools();
     ERASER.addClass('selected-tool');
     ERASER_ESSENTIAL.addClass('selected-tool');
+    currentTool = 'eraser';
   });
 
   ERASER_ESSENTIAL.click(function() {
     removeSelectedTools();
     ERASER.addClass('selected-tool');
     ERASER_ESSENTIAL.addClass('selected-tool');
+    currentTool = 'eraser';
   });
 
   FILL.click(function() {
     removeSelectedTools();
     FILL.addClass('selected-tool');
     FILL_ESSENTIAL.addClass('selected-tool');
+    currentTool = 'fill';
   });
 
   FILL_ESSENTIAL.click(function() {
     removeSelectedTools();
     FILL.addClass('selected-tool');
     FILL_ESSENTIAL.addClass('selected-tool');
+    currentTool = 'fill';
   });
 
   EYEDROPPER.click(function() {
     removeSelectedTools();
     EYEDROPPER.addClass('selected-tool');
     EYEDROPPER_ESSENTIAL.addClass('selected-tool');
+    currentTool = 'eyedropper';
   });
 
   EYEDROPPER_ESSENTIAL.click(function() {
     removeSelectedTools();
     EYEDROPPER.addClass('selected-tool');
     EYEDROPPER_ESSENTIAL.addClass('selected-tool');
+    currentTool = 'eyedropper';
   });
 
   // Check the state of the cursor
@@ -384,15 +394,26 @@ $(function() {
 
   // Use tools on the grid
   $(document).on('click', '#canvas-table td', function() {
-    $(this).css('background-color', toolColor);
+    switch (currentTool) {
+      case 'brush':
+        $(this).css('background-color', toolColor);
+      break;
+      case 'eraser':
+        $(this).css('background-color', '');
+      break;
+    }
   });
 
   $(document).on('mouseenter', '#canvas-table td', function() {
     let selectedTool = $('.selected-tool');
-
-    if (selectedTool.hasClass('fa-paint-brush')) {
-      if (mouseState) {
-        $(this).css('background-color', toolColor);
+    if (mouseState) {
+      switch (currentTool) {
+        case 'brush':
+          $(this).css('background-color', toolColor);
+        break;
+        case 'eraser':
+          $(this).css('background-color', '');
+        break;
       }
     }
   });
