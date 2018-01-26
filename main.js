@@ -46,6 +46,7 @@ $(function() {
   const FILL_ESSENTIAL = $('#fill-essential');
   const EYEDROPPER = $('#eyedropper');
   const EYEDROPPER_ESSENTIAL = $('#eyedropper-essential');
+  const RESET = $('#reset');
 
   let currentTool = 'brush';
   let mouseState = false;
@@ -450,5 +451,10 @@ $(function() {
         break;
       }
     }
+  });
+
+  // Reset Grid Content
+  RESET.click(function() {
+    $('td').attr('bgcolor', '');
   });
 });
