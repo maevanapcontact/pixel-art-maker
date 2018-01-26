@@ -572,7 +572,9 @@ a {
 }
 
 #back-color,
-#tool-color {
+#tool-color,
+#back-color-es,
+#tool-color-es {
   height: 2em;
   width: 2em;
   border-radius: 5px;
@@ -580,12 +582,14 @@ a {
   position: absolute;
 }
 
-#back-color {
+#back-color,
+#back-color-es {
   top: 0;
   left: 0;
 }
 
-#tool-color {
+#tool-color,
+#tool-color-es {
   bottom: 0;
   right: 0;
   z-index: 1;

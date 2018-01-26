@@ -32,6 +32,8 @@ $(function() {
   const MAIN_MENU_SAVE = $('#main-menu-save');
   const CONTAINER_CANVAS = $('#container-canvas');
   const MAIN_MENU_OPEN = $('#main-menu-open');
+  const BACK_COLOR_ES = $('#back-color-es');
+  const TOOL_COLOR_ES = $('#tool-color-es');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
@@ -307,7 +309,9 @@ $(function() {
 
     CANVAS_TABLE.css('background-color', bgColor);
     BACK_COLOR.val(bgColor);
+    BACK_COLOR_ES.val(bgColor);
     TOOL_COLOR.val(toolColor);
+    TOOL_COLOR_ES.val(toolColor);
   });
 
   function makeGrid() {
@@ -337,10 +341,23 @@ $(function() {
   // Change colours of the colours pickers
   TOOL_COLOR.change(function() {
     toolColor = TOOL_COLOR.val();
+    TOOL_COLOR_ES.val(toolColor);
   });
 
   BACK_COLOR.change(function() {
     bgColor = BACK_COLOR.val();
+    BACK_COLOR_ES.val(bgColor);
+    CANVAS_TABLE.css('background-color', bgColor);
+  });
+
+  TOOL_COLOR_ES.change(function() {
+    toolColor = TOOL_COLOR_ES.val();
+    TOOL_COLOR.val(toolColor);
+  });
+
+  BACK_COLOR_ES.change(function() {
+    bgColor = BACK_COLOR_ES.val();
+    BACK_COLOR.val(bgColor);
     CANVAS_TABLE.css('background-color', bgColor);
   });
 
@@ -441,10 +458,12 @@ $(function() {
         if (typeof bgColorAttribute !== typeof undefined &&
           bgColorAttribute !== false) {
             TOOL_COLOR.val(bgColorAttribute);
+            TOOL_COLOR_ES.val(bgColorAttribute);
             toolColor = TOOL_COLOR.val();
         } else {
           let tableColorAttributeHex = rgbToHex(tableColorAttribute);
           TOOL_COLOR.val(tableColorAttributeHex);
+          TOOL_COLOR_ES.val(tableColorAttributeHex);
           toolColor = TOOL_COLOR.val();
         }
       break;
