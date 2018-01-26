@@ -34,6 +34,7 @@ $(function() {
   const MAIN_MENU_OPEN = $('#main-menu-open');
   const BACK_COLOR_ES = $('#back-color-es');
   const TOOL_COLOR_ES = $('#tool-color-es');
+  const MAIN_MENU_DL = $('#main-menu-dl');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
@@ -104,7 +105,12 @@ $(function() {
         MAIN_MENU_OPEN.removeClass('disabled-text');
       break;
       case 'main-menu-dl':
-        MAIN_MENU.addClass('hidden');
+      MAIN_MENU.addClass('hidden');
+      const DOWNLOAD = $('#download');
+      DOWNLOAD.removeClass('hidden');
+      html2canvas(CONTAINER_CANVAS.get(0)).then(canvas => {
+        document.body.appendChild(canvas)
+      });
       break;
       case 'main-menu-set':
         MAIN_MENU_LIST.addClass('hidden');
@@ -329,6 +335,7 @@ $(function() {
 
     MAIN_MENU_SET.removeClass('disabled-text');
     MAIN_MENU_SAVE.removeClass('disabled-text');
+    MAIN_MENU_DL.removeClass('disabled-text');
   }
 
   // Remove the grid
