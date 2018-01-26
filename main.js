@@ -48,9 +48,16 @@ $(function() {
   const EYEDROPPER_ESSENTIAL = $('#eyedropper-essential');
 
   let currentTool = 'brush';
-
-  // Variables for tools
   let mouseState = false;
+
+  // Convert RGB to HEX
+  function rgbToHex(rgbValue) {
+    rgbValue = rgbValue.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    function hex(x) {
+        return ('0' + parseInt(x).toString(16)).slice(-2);
+    }
+    return '#' + hex(rgbValue[1]) + hex(rgbValue[2]) + hex(rgbValue[3]);
+  }
 
   // Open main menu
   MAIN_MENU_BTN.click(function() {
@@ -400,6 +407,9 @@ $(function() {
       break;
       case 'eraser':
         $(this).css('background-color', '');
+      break;
+      case 'fill':
+        $('td').css('background-color', toolColor);
       break;
     }
   });
