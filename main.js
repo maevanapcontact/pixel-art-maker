@@ -507,7 +507,7 @@ $(function() {
         $(this).attr('bgcolor', toolColor);
       break;
       case 'eraser':
-        $(this).attr('bgcolor', '');
+        $(this).removeAttr('bgcolor');
       break;
       case 'fill':
         $('td').attr('bgcolor', toolColor);
@@ -539,7 +539,7 @@ $(function() {
           $(this).attr('bgcolor', toolColor);
         break;
         case 'eraser':
-          $(this).attr('bgcolor', '');
+          $(this).removeAttr('bgcolor');
         break;
       }
     }
