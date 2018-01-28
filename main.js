@@ -69,6 +69,8 @@ $(function() {
   let checkRedoClick = true;
   let checkUndoClick = true;
 
+  let currentPalette = '';
+
   // Convert RGB to HEX
   function rgbToHex(rgbValue) {
     rgbValue = rgbValue.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
@@ -173,6 +175,7 @@ $(function() {
         COLOR_ITEM_3.css('background-color', '#646c49');
         COLOR_ITEM_4.css('background-color', '#393f28');
         COLOR_PALETTE_MENU.addClass('hidden');
+        currentPalette = 'palette-1';
       break;
       case 'palette-2':
         COLOR_ITEM_1.css('background-color', '#955e60');
@@ -180,6 +183,7 @@ $(function() {
         COLOR_ITEM_3.css('background-color', '#b2463d');
         COLOR_ITEM_4.css('background-color', '#3d3d3d');
         COLOR_PALETTE_MENU.addClass('hidden');
+        currentPalette = 'palette-2';
       break;
       case 'palette-3':
         COLOR_ITEM_1.css('background-color', '#6b7c8f');
@@ -187,6 +191,7 @@ $(function() {
         COLOR_ITEM_3.css('background-color', '#fac231');
         COLOR_ITEM_4.css('background-color', '#dcc8aa');
         COLOR_PALETTE_MENU.addClass('hidden');
+        currentPalette = 'palette-3';
       break;
       case 'palette-4':
         COLOR_ITEM_1.css('background-color', '#2c6da9');
@@ -194,6 +199,7 @@ $(function() {
         COLOR_ITEM_3.css('background-color', '#b57d4e');
         COLOR_ITEM_4.css('background-color', '#45859b');
         COLOR_PALETTE_MENU.addClass('hidden');
+        currentPalette = 'palette-4';
       break;
       case 'palette-5':
         COLOR_ITEM_1.css('background-color', '#e47122');
@@ -201,6 +207,128 @@ $(function() {
         COLOR_ITEM_3.css('background-color', '#64babf');
         COLOR_ITEM_4.css('background-color', '#f1aa7e');
         COLOR_PALETTE_MENU.addClass('hidden');
+        currentPalette = 'palette-5';
+      break;
+    }
+  });
+
+  // Use color preset
+  COLOR_ITEM_1.click(function() {
+    switch (currentPalette) {
+      case 'palette-1':
+        TOOL_COLOR.val('#cda450');
+        TOOL_COLOR_ES.val('#cda450');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-2':
+        TOOL_COLOR.val('#955e60');
+        TOOL_COLOR_ES.val('#955e60');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-3':
+        TOOL_COLOR.val('#6b7c8f');
+        TOOL_COLOR_ES.val('#6b7c8f');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-4':
+        TOOL_COLOR.val('#2c6da9');
+        TOOL_COLOR_ES.val('#2c6da9');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-5':
+        TOOL_COLOR.val('#e47122');
+        TOOL_COLOR_ES.val('#e47122');
+        toolColor = TOOL_COLOR.val();
+      break;
+    }
+  });
+
+  COLOR_ITEM_2.click(function() {
+    switch (currentPalette) {
+      case 'palette-1':
+        TOOL_COLOR.val('#e9e9dc');
+        TOOL_COLOR_ES.val('#e9e9dc');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-2':
+        TOOL_COLOR.val('#646f62');
+        TOOL_COLOR_ES.val('#646f62');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-3':
+        TOOL_COLOR.val('#f7892f');
+        TOOL_COLOR_ES.val('#f7892f');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-4':
+        TOOL_COLOR.val('#cf5261');
+        TOOL_COLOR_ES.val('#cf5261');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-5':
+        TOOL_COLOR.val('#09899e');
+        TOOL_COLOR_ES.val('#09899e');
+        toolColor = TOOL_COLOR.val();
+      break;
+    }
+  });
+
+  COLOR_ITEM_3.click(function() {
+    switch (currentPalette) {
+      case 'palette-1':
+        TOOL_COLOR.val('#646c49');
+        TOOL_COLOR_ES.val('#646c49');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-2':
+        TOOL_COLOR.val('#b2463d');
+        TOOL_COLOR_ES.val('#b2463d');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-3':
+        TOOL_COLOR.val('#fac231');
+        TOOL_COLOR_ES.val('#fac231');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-4':
+        TOOL_COLOR.val('#b57d4e');
+        TOOL_COLOR_ES.val('#b57d4e');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-5':
+        TOOL_COLOR.val('#64babf');
+        TOOL_COLOR_ES.val('#64babf');
+        toolColor = TOOL_COLOR.val();
+      break;
+    }
+  });
+
+  COLOR_ITEM_4.click(function() {
+    switch (currentPalette) {
+      case 'palette-1':
+        TOOL_COLOR.val('#393f28');
+        TOOL_COLOR_ES.val('#393f28');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-2':
+        TOOL_COLOR.val('#3d3d3d');
+        TOOL_COLOR_ES.val('#3d3d3d');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-3':
+        TOOL_COLOR.val('#dcc8aa');
+        TOOL_COLOR_ES.val('#dcc8aa');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-4':
+        TOOL_COLOR.val('#45859b');
+        TOOL_COLOR_ES.val('#45859b');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-5':
+        TOOL_COLOR.val('#f1aa7e');
+        TOOL_COLOR_ES.val('#f1aa7e');
+        toolColor = TOOL_COLOR.val();
       break;
     }
   });
