@@ -35,6 +35,7 @@ $(function() {
   const BACK_COLOR_ES = $('#back-color-es');
   const TOOL_COLOR_ES = $('#tool-color-es');
   const MAIN_MENU_DL = $('#main-menu-dl');
+  const DOWNLOAD = $('#download');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
@@ -106,7 +107,6 @@ $(function() {
       break;
       case 'main-menu-dl':
       MAIN_MENU.addClass('hidden');
-      const DOWNLOAD = $('#download');
       DOWNLOAD.removeClass('hidden');
       html2canvas(CONTAINER_CANVAS.get(0)).then(canvas => {
         document.body.appendChild(canvas)
@@ -193,6 +193,12 @@ $(function() {
   // Open / Close layer button
   LAYER_BTN.click(function() {
     LAYER_POPUP.toggleClass('hidden');
+  });
+
+  // Close the download section
+  DOWNLOAD.click(function() {
+    DOWNLOAD.addClass('hidden');
+    $('canvas').remove();
   });
 
   // Workspace choice
