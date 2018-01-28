@@ -381,6 +381,8 @@ $(function() {
     MAIN_MENU_SET.removeClass('disabled-text');
     MAIN_MENU_SAVE.removeClass('disabled-text');
     MAIN_MENU_DL.removeClass('disabled-text');
+
+    undo = CONTAINER_CANVAS.html();
   }
 
   // Remove the grid
