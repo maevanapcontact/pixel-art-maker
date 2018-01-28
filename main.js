@@ -115,13 +115,14 @@ $(function() {
         MAIN_MENU_OPEN.removeClass('disabled-text');
       break;
       case 'main-menu-dl':
-      MAIN_MENU.addClass('hidden');
-      DOWNLOAD.removeClass('hidden');
-      $('.canvas-table td').css('width', SETTINGS_CELL_SIZE.val() + 'px');
-      $('.canvas-table td').css('height', SETTINGS_CELL_SIZE.val() + 'px');
-      html2canvas(CONTAINER_CANVAS.get(0)).then(canvas => {
-        document.body.appendChild(canvas)
-      });
+        MAIN_MENU.addClass('hidden');
+        DOWNLOAD.removeClass('hidden');
+        $('#canvas-table td').css('border', 'none');
+        $('.canvas-table td').css('width', SETTINGS_CELL_SIZE.val() + 'px');
+        $('.canvas-table td').css('height', SETTINGS_CELL_SIZE.val() + 'px');
+        html2canvas(CONTAINER_CANVAS.get(0)).then(canvas => {
+          document.body.appendChild(canvas)
+        });
       break;
       case 'main-menu-set':
         MAIN_MENU_LIST.addClass('hidden');
