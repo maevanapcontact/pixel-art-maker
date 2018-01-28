@@ -36,6 +36,9 @@ $(function() {
   const TOOL_COLOR_ES = $('#tool-color-es');
   const MAIN_MENU_DL = $('#main-menu-dl');
   const DOWNLOAD = $('#download');
+  const ICON_CLICK_UNDO = $('#icon-click-undo');
+  const ICON_CLICK_REDO = $('#icon-click-redo');
+  const UNDO_ESSENTIAL = $('#undo-essential');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
@@ -59,6 +62,11 @@ $(function() {
   let mouseState = false;
 
   let saveCanvas;
+  let undo;
+  let redo;
+
+  let checkRedoClick = true;
+  let checkUndoClick = true;
 
   // Convert RGB to HEX
   function rgbToHex(rgbValue) {
@@ -96,13 +104,11 @@ $(function() {
       case 'main-menu-open':
         MAIN_MENU.addClass('hidden');
         CONTAINER_CANVAS.empty();
-        console.log(saveCanvas);
         CONTAINER_CANVAS.html(saveCanvas);
       break;
       case 'main-menu-save':
         MAIN_MENU.addClass('hidden');
         saveCanvas = CONTAINER_CANVAS.html();
-        console.log(saveCanvas);
         MAIN_MENU_OPEN.removeClass('disabled-text');
       break;
       case 'main-menu-dl':
@@ -199,6 +205,39 @@ $(function() {
   DOWNLOAD.click(function() {
     DOWNLOAD.addClass('hidden');
     $('canvas').remove();
+  });
+
+  // Undo
+  function undoGrid() {
+    redo = CONTAINER_CANVAS.html();
+    CONTAINER_CANVAS.empty();
+    CONTAINER_CANVAS.html(undo);
+  }
+
+  ICON_CLICK_UNDO.click(function() {
+    if (checkUndoClick) {
+      undoGrid();
+      checkUndoClick = false;
+      checkRedoClick = true;
+    }
+  });
+
+  UNDO_ESSENTIAL.click(function() {
+    if (checkUndoClick) {
+      undoGrid();
+      checkUndoClick = false;
+      checkRedoClick = true;
+    }
+  });
+
+  // Redo
+  ICON_CLICK_REDO.click(function() {
+    if (checkRedoClick) {
+      CONTAINER_CANVAS.empty();
+      CONTAINER_CANVAS.html(redo);
+      checkRedoClick = false;
+      checkUndoClick = true;
+    }
   });
 
   // Workspace choice
@@ -454,6 +493,8 @@ $(function() {
 
   // Use tools on the grid
   $(document).on('click', '#canvas-table td', function() {
+    undo = CONTAINER_CANVAS.html();
+
     let bgColorAttribute = $(this).attr('bgcolor');
     let tableColorAttribute = CANVAS_TABLE.css('background-color');
 
@@ -481,6 +522,9 @@ $(function() {
         }
       break;
     }
+
+    checkUndoClick = true;
+    checkRedoClick = true;
   });
 
   $(document).on('mouseenter', '#canvas-table td', function() {
