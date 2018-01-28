@@ -39,6 +39,7 @@ $(function() {
   const ICON_CLICK_UNDO = $('#icon-click-undo');
   const ICON_CLICK_REDO = $('#icon-click-redo');
   const UNDO_ESSENTIAL = $('#undo-essential');
+  const ZOOM_INPUT = $('#zoom-input');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
@@ -114,6 +115,8 @@ $(function() {
       case 'main-menu-dl':
       MAIN_MENU.addClass('hidden');
       DOWNLOAD.removeClass('hidden');
+      $('.canvas-table td').css('width', SETTINGS_CELL_SIZE.val() + 'px');
+      $('.canvas-table td').css('height', SETTINGS_CELL_SIZE.val() + 'px');
       html2canvas(CONTAINER_CANVAS.get(0)).then(canvas => {
         document.body.appendChild(canvas)
       });
@@ -140,6 +143,12 @@ $(function() {
     MAIN_MENU_LIST.removeClass('hidden');
     $('.canvas-table td').css('width', SETTINGS_CELL_SIZE.val() + 'px');
     $('.canvas-table td').css('height', SETTINGS_CELL_SIZE.val() + 'px');
+  });
+
+  // Use Zoom in Tool Bar
+  ZOOM_INPUT.change(function() {
+    $('.canvas-table td').css('width', ZOOM_INPUT.val() + 'px');
+    $('.canvas-table td').css('height', ZOOM_INPUT.val() + 'px');
   });
 
   // Open Build Grid Popup
