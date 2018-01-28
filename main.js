@@ -686,6 +686,6 @@ $(function() {
 
   // Reset Grid Content
   RESET.click(function() {
-    $('td').attr('bgcolor', '');
+    $('td').removeAttr('bgcolor');
   });
 });
