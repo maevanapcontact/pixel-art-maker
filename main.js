@@ -483,8 +483,12 @@ $(function() {
   });
 
   // Check the state of the cursor
-  $(document).mousedown(function(event) {
+  CONTAINER_CANVAS.mousedown(function(event) {
     mouseState = true;
+    undo = CONTAINER_CANVAS.html();
+
+    checkUndoClick = true;
+    checkRedoClick = true;
   });
 
   $(document).mouseup(function(event) {
