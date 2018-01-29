@@ -10,14 +10,14 @@
 - [x] Settings
   - [x] Change the grid color (The border color)
   - [x] Change the Default Pixel size (width = square shape)
-- [ ] Undo
-- [ ] Redo
+- [x] Undo
+- [x] Redo
 
 
 ## Tools
 
-- [ ] Zoom (+ / -)
-- [ ] Color palette (Different preset)
+- [x] Zoom (+ / -)
+- [x] Color palette (Different preset)
 - [x] Color Picker (tool and background)
 - [x] Pen/ Brush (Write on click and drag)
 - [x] Eraser (Remove the color background)
