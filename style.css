@@ -250,19 +250,32 @@ a {
 }
 
 /* CANVAS TABLE */
-.canvas-table {
-  border-collapse: collapse;
-  background: #fff;
+.container-canvas {
+  position: relative;
 }
 
-.canvas-table td {
+.canvas-table {
+  z-index: 1;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table td {
   border: 1px solid #000;
   width: 20px;
   height: 20px;
 }
 
-.canvas-table td:hover {
+table td:hover {
   cursor: pointer;
+}
+
+table.layers-added {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* MAIN MENU */

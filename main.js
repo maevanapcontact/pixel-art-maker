@@ -71,6 +71,12 @@ $(function() {
 
   let currentPalette = '';
 
+  // Variables Layers
+  const ADD_LAYER_BTN = $('#add-layer-btn');
+  const LAYER_BOX = $('#layer-box');
+  const DELETE_LAYER_BTN = $('#delete-layer-btn');
+  let numberLayer = 1;
+
   // Convert RGB to HEX
   function rgbToHex(rgbValue) {
     rgbValue = rgbValue.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
@@ -529,6 +535,27 @@ $(function() {
       $('tr').remove();
     }
   }
+
+  // Add a layer
+  ADD_LAYER_BTN.click(function() {
+    numberLayer++;
+
+    CONTAINER_CANVAS.append('<table class="layers-added" id="layer-' + numberLayer + '"></table>');
+    $('table').last().css('zIndex', numberLayer);
+
+    for (let i = 0; i < heightCanvas; i++) {
+      $('table').last().append('<tr></tr>');
+      for (let j = 0; j < widthCanvas; j++) {
+        $('tr').last().append('<td class="cell-click"></td>');
+      }
+    }
+
+    LAYER_BOX.prepend('<div class="layers" id="layer-' + numberLayer + '">Layer ' + numberLayer + '</div>');
+  });
+
+  DELETE_LAYER_BTN.click(function() {
+    $('.active-layer').remove();
+  });
 
   // Change colours of the colours pickers
   TOOL_COLOR.change(function() {
