@@ -80,10 +80,14 @@ $(function() {
   const VISIBLE_LAYER = $('#visible-layer');
   const EYE = $('#eye');
   const EYE_SLASH = $('#eye-slash');
+  const LOCK_LAYER = $('#lock-layer');
+  const LOCK_OPEN = $('#lock-open');
+  const LOCK = $('#lock');
 
   let numberLayer = 1;
   let currentLayerActive = 1;
   let layerIsVisible = true;
+  let layerIsLocked = false;
 
   // Convert RGB to HEX
   function rgbToHex(rgbValue) {
@@ -580,7 +584,7 @@ $(function() {
     // let TABLE = $('table');
     let elementClicked = event.target;
 
-    if (elementClicked.className === 'layers' || elementClicked.className === 'layers-added' || elementClicked.className === 'layers hide-visibility' || elementClicked.className === 'layers-added hide-visibility') {
+    if (elementClicked.className === 'layers' || elementClicked.className === 'layers-added' || elementClicked.className === 'layers hide-visibility' || elementClicked.className === 'layers-added hide-visibility' || elementClicked.className === 'layers lock-layer' || elementClicked.className === 'layers-added lock-layer') {
       $('#container-canvas table').removeClass('active-layer');
       $('#layer-box .layers').removeClass('active-layer');
 
@@ -597,9 +601,21 @@ $(function() {
       if ($(elementClicked).hasClass('hide-visibility')) {
         EYE_SLASH.removeClass('hidden');
         EYE.addClass('hidden');
+        layerIsVisible = false;
       } else {
         EYE_SLASH.addClass('hidden');
         EYE.removeClass('hidden');
+        layerIsVisible = true;
+      }
+
+      if ($(elementClicked).hasClass('lock-layer')) {
+        LOCK.removeClass('hidden');
+        LOCK_OPEN.addClass('hidden');
+        layerIsLocked = true;
+      } else {
+        LOCK.addClass('hidden');
+        LOCK_OPEN.removeClass('hidden');
+        layerIsLocked = false;
       }
     }
   });
@@ -646,6 +662,24 @@ $(function() {
       layerIsVisible = false;
       EYE_SLASH.removeClass('hidden');
       EYE.addClass('hidden');
+    }
+  });
+
+  // Change the lock state of the layer
+  LOCK_LAYER.click(function() {
+    let currentLayerToVisible = $('.layers.active-layer');
+    let currentTableToVisible = '#layer-' + currentLayerActive;
+
+    if ($(currentLayerToVisible).hasClass('lock-layer')) {
+      $(currentLayerToVisible).removeClass('lock-layer');
+      LOCK.addClass('hidden');
+      LOCK_OPEN.removeClass('hidden');
+      layerIsLocked = false;
+    } else {
+      $(currentLayerToVisible).addClass('lock-layer');
+      LOCK.removeClass('hidden');
+      LOCK_OPEN.addClass('hidden');
+      layerIsLocked = true;
     }
   });
 
@@ -756,57 +790,16 @@ $(function() {
 
   // Use tools on the grid
   $(document).on('click', '.cell-click', function() {
-    undo = CONTAINER_CANVAS.html();
+    if (!layerIsLocked && layerIsVisible) {
+      undo = CONTAINER_CANVAS.html();
 
-    let tableColorAttribute = CANVAS_TABLE.css('background-color');
+      let tableColorAttribute = CANVAS_TABLE.css('background-color');
 
-    let cellClicked = $(this).attr('class');
-    cellClicked = cellClicked.replace(' ', '.');
-    let canvasChosenTd = '#layer-' + currentLayerActive + ' td';
-    let canvasChosen = '#layer-' + currentLayerActive + ' .' + cellClicked;
+      let cellClicked = $(this).attr('class');
+      cellClicked = cellClicked.replace(' ', '.');
+      let canvasChosenTd = '#layer-' + currentLayerActive + ' td';
+      let canvasChosen = '#layer-' + currentLayerActive + ' .' + cellClicked;
 
-    switch (currentTool) {
-      case 'brush':
-        $(canvasChosen).attr('bgcolor', toolColor);
-      break;
-      case 'eraser':
-        $(canvasChosen).removeAttr('bgcolor');
-      break;
-      case 'fill':
-        $(canvasChosenTd).attr('bgcolor', toolColor);
-      break;
-      case 'eyedropper':
-        for (let i = numberLayer; i > 0; i--) {
-          let layerLoop = '#layer-' + i + ' .' + cellClicked;
-          let bgColorAttribute = $(layerLoop).attr('bgcolor');
-          if (typeof bgColorAttribute !== typeof undefined &&
-            bgColorAttribute !== false) {
-              TOOL_COLOR.val(bgColorAttribute);
-              TOOL_COLOR_ES.val(bgColorAttribute);
-              toolColor = TOOL_COLOR.val();
-              return false;
-          } else {
-            let tableColorAttributeHex = rgbToHex(tableColorAttribute);
-            TOOL_COLOR.val(tableColorAttributeHex);
-            TOOL_COLOR_ES.val(tableColorAttributeHex);
-            toolColor = TOOL_COLOR.val();
-          }
-        }
-      break;
-    }
-
-    checkUndoClick = true;
-    checkRedoClick = true;
-  });
-
-  $(document).on('mouseenter', '.cell-click', function() {
-    let cellClicked = $(this).attr('class');
-    cellClicked = cellClicked.replace(' ', '.');
-
-    let canvasChosen = '#layer-' + currentLayerActive + ' .' + cellClicked;
-
-    let selectedTool = $('.selected-tool');
-    if (mouseState) {
       switch (currentTool) {
         case 'brush':
           $(canvasChosen).attr('bgcolor', toolColor);
@@ -814,7 +807,56 @@ $(function() {
         case 'eraser':
           $(canvasChosen).removeAttr('bgcolor');
         break;
+        case 'fill':
+          $(canvasChosenTd).attr('bgcolor', toolColor);
+        break;
+        case 'eyedropper':
+          for (let i = numberLayer; i > 0; i--) {
+            let layerLoop = '#layer-' + i + ' .' + cellClicked;
+            let bgColorAttribute = $(layerLoop).attr('bgcolor');
+            if (typeof bgColorAttribute !== typeof undefined &&
+              bgColorAttribute !== false) {
+                TOOL_COLOR.val(bgColorAttribute);
+                TOOL_COLOR_ES.val(bgColorAttribute);
+                toolColor = TOOL_COLOR.val();
+                return false;
+            } else {
+              let tableColorAttributeHex = rgbToHex(tableColorAttribute);
+              TOOL_COLOR.val(tableColorAttributeHex);
+              TOOL_COLOR_ES.val(tableColorAttributeHex);
+              toolColor = TOOL_COLOR.val();
+            }
+          }
+        break;
       }
+
+      checkUndoClick = true;
+      checkRedoClick = true;
+    } else {
+      return false;
+    }
+  });
+
+  $(document).on('mouseenter', '.cell-click', function() {
+    if (!layerIsLocked && layerIsVisible) {
+      let cellClicked = $(this).attr('class');
+      cellClicked = cellClicked.replace(' ', '.');
+
+      let canvasChosen = '#layer-' + currentLayerActive + ' .' + cellClicked;
+
+      let selectedTool = $('.selected-tool');
+      if (mouseState) {
+        switch (currentTool) {
+          case 'brush':
+            $(canvasChosen).attr('bgcolor', toolColor);
+          break;
+          case 'eraser':
+            $(canvasChosen).removeAttr('bgcolor');
+          break;
+        }
+      }
+    } else {
+      return false;
     }
   });
 

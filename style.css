@@ -904,3 +904,13 @@ canvas {
 .hide-visibility {
   color: #a3a3a3;
 }
+
+.lock-layer {
+  color: #a3a3a3;
+  background: #a3a3a3;
+}
+
+.layers.active-layer.lock-layer {
+  background: #a3a3a3;
+  color: #fff;
+}
