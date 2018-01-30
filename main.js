@@ -76,6 +76,7 @@ $(function() {
   const LAYER_BOX = $('#layer-box');
   const DELETE_LAYER_BTN = $('#delete-layer-btn');
   let numberLayer = 1;
+  let currentLayerActive = 1;
 
   // Convert RGB to HEX
   function rgbToHex(rgbValue) {
@@ -123,9 +124,9 @@ $(function() {
       case 'main-menu-dl':
         MAIN_MENU.addClass('hidden');
         DOWNLOAD.removeClass('hidden');
-        $('#layer-1 td').css('border', 'none');
-        $('.layer-1 td').css('width', SETTINGS_CELL_SIZE.val() + 'px');
-        $('.layer-1 td').css('height', SETTINGS_CELL_SIZE.val() + 'px');
+        $('table td').css('border', 'none');
+        $('table td').css('width', SETTINGS_CELL_SIZE.val() + 'px');
+        $('table td').css('height', SETTINGS_CELL_SIZE.val() + 'px');
         html2canvas(CONTAINER_CANVAS.get(0)).then(canvas => {
           document.body.appendChild(canvas)
         });
@@ -518,7 +519,7 @@ $(function() {
     for (let i = 0; i < heightCanvas; i++) {
       CANVAS_TABLE.append('<tr></tr>');
       for (let j = 0; j < widthCanvas; j++) {
-        $('tr').last().append('<td class="cell-click"></td>');
+        $('tr').last().append('<td class="cell-click number-cell-' + i + '-' + j + '"></td>');
       }
     }
 
@@ -548,17 +549,20 @@ $(function() {
     for (let i = 0; i < heightCanvas; i++) {
       $('table').last().append('<tr></tr>');
       for (let j = 0; j < widthCanvas; j++) {
-        $('tr').last().append('<td class="cell-click"></td>');
+        $('tr').last().append('<td class="cell-click number-cell-' + i + '-' + j + '"></td>');
       }
     }
 
     $('#layer-box .layers').removeClass('active-layer');
 
     LAYER_BOX.prepend('<div class="layers active-layer" id="layer-box-' + numberLayer + '">Layer ' + numberLayer + '</div>');
+
+    currentLayerActive = numberLayer;
   });
 
   DELETE_LAYER_BTN.click(function() {
     $('.active-layer').remove();
+    currentLayerActive = 0;
   });
 
   LAYER_BOX.click(function(event) {
@@ -585,6 +589,7 @@ $(function() {
           // }
           let currentTable = '#layer-' + i;
           $(currentTable).addClass('active-layer');
+          currentLayerActive = i;
         }
       }
     }
@@ -696,33 +701,42 @@ $(function() {
   });
 
   // Use tools on the grid
-  $(document).on('click', '#layer-1 td', function() {
+  $(document).on('click', '.cell-click', function() {
     undo = CONTAINER_CANVAS.html();
 
-    let bgColorAttribute = $(this).attr('bgcolor');
     let tableColorAttribute = CANVAS_TABLE.css('background-color');
+
+    let cellClicked = $(this).attr('class');
+    cellClicked = cellClicked.replace(' ', '.');
+    let canvasChosenTd = '#layer-' + currentLayerActive + ' td';
+    let canvasChosen = '#layer-' + currentLayerActive + ' .' + cellClicked;
 
     switch (currentTool) {
       case 'brush':
-        $(this).attr('bgcolor', toolColor);
+        $(canvasChosen).attr('bgcolor', toolColor);
       break;
       case 'eraser':
-        $(this).removeAttr('bgcolor');
+        $(canvasChosen).removeAttr('bgcolor');
       break;
       case 'fill':
-        $('td').attr('bgcolor', toolColor);
+        $(canvasChosenTd).attr('bgcolor', toolColor);
       break;
       case 'eyedropper':
-        if (typeof bgColorAttribute !== typeof undefined &&
-          bgColorAttribute !== false) {
-            TOOL_COLOR.val(bgColorAttribute);
-            TOOL_COLOR_ES.val(bgColorAttribute);
+        for (let i = numberLayer; i > 0; i--) {
+          let layerLoop = '#layer-' + i + ' .' + cellClicked;
+          let bgColorAttribute = $(layerLoop).attr('bgcolor');
+          if (typeof bgColorAttribute !== typeof undefined &&
+            bgColorAttribute !== false) {
+              TOOL_COLOR.val(bgColorAttribute);
+              TOOL_COLOR_ES.val(bgColorAttribute);
+              toolColor = TOOL_COLOR.val();
+              return false;
+          } else {
+            let tableColorAttributeHex = rgbToHex(tableColorAttribute);
+            TOOL_COLOR.val(tableColorAttributeHex);
+            TOOL_COLOR_ES.val(tableColorAttributeHex);
             toolColor = TOOL_COLOR.val();
-        } else {
-          let tableColorAttributeHex = rgbToHex(tableColorAttribute);
-          TOOL_COLOR.val(tableColorAttributeHex);
-          TOOL_COLOR_ES.val(tableColorAttributeHex);
-          toolColor = TOOL_COLOR.val();
+          }
         }
       break;
     }
@@ -731,15 +745,20 @@ $(function() {
     checkRedoClick = true;
   });
 
-  $(document).on('mouseenter', '#layer-1 td', function() {
+  $(document).on('mouseenter', '.cell-click', function() {
+    let cellClicked = $(this).attr('class');
+    cellClicked = cellClicked.replace(' ', '.');
+
+    let canvasChosen = '#layer-' + currentLayerActive + ' .' + cellClicked;
+
     let selectedTool = $('.selected-tool');
     if (mouseState) {
       switch (currentTool) {
         case 'brush':
-          $(this).attr('bgcolor', toolColor);
+          $(canvasChosen).attr('bgcolor', toolColor);
         break;
         case 'eraser':
-          $(this).removeAttr('bgcolor');
+          $(canvasChosen).removeAttr('bgcolor');
         break;
       }
     }
