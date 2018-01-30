@@ -4,7 +4,7 @@ $(function() {
   const WORKSPACE_SELECT = $('#workspaces-select');
   const CREATE_GRID_BTN = $('#create-grid-btn');
   const CREATE_CANVAS_FORM = $('#create-canvas-form');
-  const CANVAS_TABLE = $('#canvas-table');
+  const CANVAS_TABLE = $('#layer-1');
   const CREATE_GRID_POPUP = $('#create-grid-popup');
   const WIDTH_INPUT = $('#width-input');
   const HEIGHT_INPUT = $('#height-input');
@@ -123,9 +123,9 @@ $(function() {
       case 'main-menu-dl':
         MAIN_MENU.addClass('hidden');
         DOWNLOAD.removeClass('hidden');
-        $('#canvas-table td').css('border', 'none');
-        $('.canvas-table td').css('width', SETTINGS_CELL_SIZE.val() + 'px');
-        $('.canvas-table td').css('height', SETTINGS_CELL_SIZE.val() + 'px');
+        $('#layer-1 td').css('border', 'none');
+        $('.layer-1 td').css('width', SETTINGS_CELL_SIZE.val() + 'px');
+        $('.layer-1 td').css('height', SETTINGS_CELL_SIZE.val() + 'px');
         html2canvas(CONTAINER_CANVAS.get(0)).then(canvas => {
           document.body.appendChild(canvas)
         });
@@ -142,7 +142,7 @@ $(function() {
 
   // Change color grid itself
   SETTINGS_GRID_COLOR.change(function() {
-    $('.canvas-table td').css('border-color', SETTINGS_GRID_COLOR.val());
+    $('table td').css('border-color', SETTINGS_GRID_COLOR.val());
   });
 
   // Change cells size
@@ -150,14 +150,14 @@ $(function() {
     MAIN_MENU.addClass('hidden');
     SETTINGS_POPUP.addClass('hidden');
     MAIN_MENU_LIST.removeClass('hidden');
-    $('.canvas-table td').css('width', SETTINGS_CELL_SIZE.val() + 'px');
-    $('.canvas-table td').css('height', SETTINGS_CELL_SIZE.val() + 'px');
+    $('table td').css('width', SETTINGS_CELL_SIZE.val() + 'px');
+    $('table td').css('height', SETTINGS_CELL_SIZE.val() + 'px');
   });
 
   // Use Zoom in Tool Bar
   ZOOM_INPUT.change(function() {
-    $('.canvas-table td').css('width', ZOOM_INPUT.val() + 'px');
-    $('.canvas-table td').css('height', ZOOM_INPUT.val() + 'px');
+    $('table td').css('width', ZOOM_INPUT.val() + 'px');
+    $('table td').css('height', ZOOM_INPUT.val() + 'px');
   });
 
   // Open Build Grid Popup
@@ -540,7 +540,9 @@ $(function() {
   ADD_LAYER_BTN.click(function() {
     numberLayer++;
 
-    CONTAINER_CANVAS.append('<table class="layers-added" id="layer-' + numberLayer + '"></table>');
+    $('#container-canvas table').removeClass('active-layer');
+
+    CONTAINER_CANVAS.append('<table class="layers-added active-layer" id="layer-' + numberLayer + '"></table>');
     $('table').last().css('zIndex', numberLayer);
 
     for (let i = 0; i < heightCanvas; i++) {
@@ -550,11 +552,42 @@ $(function() {
       }
     }
 
-    LAYER_BOX.prepend('<div class="layers" id="layer-' + numberLayer + '">Layer ' + numberLayer + '</div>');
+    $('#layer-box .layers').removeClass('active-layer');
+
+    LAYER_BOX.prepend('<div class="layers active-layer" id="layer-box-' + numberLayer + '">Layer ' + numberLayer + '</div>');
   });
 
   DELETE_LAYER_BTN.click(function() {
     $('.active-layer').remove();
+  });
+
+  LAYER_BOX.click(function(event) {
+    // let TABLE = $('table');
+    let elementClicked = event.target;
+
+    if (elementClicked.className === 'layers' || elementClicked.className === 'layers-added') {
+      $('#container-canvas table').removeClass('active-layer');
+      $('#layer-box .layers').removeClass('active-layer');
+
+      $(elementClicked).addClass('active-layer');
+
+      for (let i = 1; i <= numberLayer; i++) {
+        if ($(elementClicked).attr('id') === 'layer-box-' + i) {
+          // let currentTable = $('table')[i - 1];
+          // // console.log(currentTable);
+          // $(currentTable).addClass('active-layer');
+          // for (let j = 0; j < $('table').length; j++) {
+          //   let previousTable = $('table')[j];
+          //   let currentTable = $('table')[j + 1];
+          //   if ($(previousTable).attr('id') === 'layer-' + i) {
+          //     $(previousTable).addClass('active-layer');
+          //   }
+          // }
+          let currentTable = '#layer-' + i;
+          $(currentTable).addClass('active-layer');
+        }
+      }
+    }
   });
 
   // Change colours of the colours pickers
@@ -663,7 +696,7 @@ $(function() {
   });
 
   // Use tools on the grid
-  $(document).on('click', '#canvas-table td', function() {
+  $(document).on('click', '#layer-1 td', function() {
     undo = CONTAINER_CANVAS.html();
 
     let bgColorAttribute = $(this).attr('bgcolor');
@@ -698,7 +731,7 @@ $(function() {
     checkRedoClick = true;
   });
 
-  $(document).on('mouseenter', '#canvas-table td', function() {
+  $(document).on('mouseenter', '#layer-1 td', function() {
     let selectedTool = $('.selected-tool');
     if (mouseState) {
       switch (currentTool) {
