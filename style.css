@@ -899,3 +899,8 @@ canvas {
 .selected-tool .fa-eye-dropper {
   color: #e9722a;
 }
+
+/* VISIBILITY LAYERS */
+.hide-visibility {
+  color: #a3a3a3;
+}

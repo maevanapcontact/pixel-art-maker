@@ -77,9 +77,13 @@ $(function() {
   const DELETE_LAYER_BTN = $('#delete-layer-btn');
   const LAYER_NAME_INPUT = $('#layer-name-input');
   const LAYERS_OPACITY_INPUT = $('#layers-opacity-input');
+  const VISIBLE_LAYER = $('#visible-layer');
+  const EYE = $('#eye');
+  const EYE_SLASH = $('#eye-slash');
 
   let numberLayer = 1;
   let currentLayerActive = 1;
+  let layerIsVisible = true;
 
   // Convert RGB to HEX
   function rgbToHex(rgbValue) {
@@ -572,7 +576,7 @@ $(function() {
     // let TABLE = $('table');
     let elementClicked = event.target;
 
-    if (elementClicked.className === 'layers' || elementClicked.className === 'layers-added') {
+    if (elementClicked.className === 'layers' || elementClicked.className === 'layers-added' || elementClicked.className === 'layers hide-visibility' || elementClicked.className === 'layers-added hide-visibility') {
       $('#container-canvas table').removeClass('active-layer');
       $('#layer-box .layers').removeClass('active-layer');
 
@@ -580,20 +584,18 @@ $(function() {
 
       for (let i = 1; i <= numberLayer; i++) {
         if ($(elementClicked).attr('id') === 'layer-box-' + i) {
-          // let currentTable = $('table')[i - 1];
-          // // console.log(currentTable);
-          // $(currentTable).addClass('active-layer');
-          // for (let j = 0; j < $('table').length; j++) {
-          //   let previousTable = $('table')[j];
-          //   let currentTable = $('table')[j + 1];
-          //   if ($(previousTable).attr('id') === 'layer-' + i) {
-          //     $(previousTable).addClass('active-layer');
-          //   }
-          // }
           let currentTable = '#layer-' + i;
           $(currentTable).addClass('active-layer');
           currentLayerActive = i;
         }
+      }
+
+      if ($(elementClicked).hasClass('hide-visibility')) {
+        EYE_SLASH.removeClass('hidden');
+        EYE.addClass('hidden');
+      } else {
+        EYE_SLASH.addClass('hidden');
+        EYE.removeClass('hidden');
       }
     }
   });
@@ -609,14 +611,38 @@ $(function() {
 
   // Change the opacity of the layer
   LAYERS_OPACITY_INPUT.change(function() {
-    let tableToChange = $('table.layers-added.active-layer');
-    let tableOneToChange = $('table.canvas-table.active-layer');
+    if (layerIsVisible) {
+      let tableToChange = $('table.layers-added.active-layer');
+      let tableOneToChange = $('table.canvas-table.active-layer');
 
-    let valueOpacity = LAYERS_OPACITY_INPUT.val();
-    valueOpacity /= 100;
+      let valueOpacity = LAYERS_OPACITY_INPUT.val();
+      valueOpacity /= 100;
 
-    $(tableToChange).css('opacity', valueOpacity);
-    $(tableOneToChange).css('opacity', valueOpacity);
+      $(tableToChange).css('opacity', valueOpacity);
+      $(tableOneToChange).css('opacity', valueOpacity);
+    } else {
+      return false;
+    }
+  });
+
+  // Change the visibility state of the layer
+  VISIBLE_LAYER.click(function() {
+    let currentLayerToVisible = $('.layers.active-layer');
+    let currentTableToVisible = '#layer-' + currentLayerActive;
+
+    if ($(currentLayerToVisible).hasClass('hide-visibility')) {
+      $(currentLayerToVisible).removeClass('hide-visibility');
+      $(currentTableToVisible).css('opacity', 100);
+      layerIsVisible = true;
+      EYE_SLASH.addClass('hidden');
+      EYE.removeClass('hidden');
+    } else {
+      $(currentLayerToVisible).addClass('hide-visibility');
+      $(currentTableToVisible).css('opacity', 0);
+      layerIsVisible = false;
+      EYE_SLASH.removeClass('hidden');
+      EYE.addClass('hidden');
+    }
   });
 
   // Change colours of the colours pickers
