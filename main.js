@@ -76,6 +76,7 @@ $(function() {
   const LAYER_BOX = $('#layer-box');
   const DELETE_LAYER_BTN = $('#delete-layer-btn');
   const LAYER_NAME_INPUT = $('#layer-name-input');
+  const LAYERS_OPACITY_INPUT = $('#layers-opacity-input');
 
   let numberLayer = 1;
   let currentLayerActive = 1;
@@ -597,13 +598,25 @@ $(function() {
     }
   });
 
+  // Change the name of the active layer
   LAYER_NAME_INPUT.change(function(event) {
     event.preventDefault();
     let layerToRename = $('.layers.active-layer');
     let valueEntered = LAYER_NAME_INPUT.val();
-    console.log(valueEntered);
 
     $(layerToRename).text(valueEntered);
+  });
+
+  // Change the opacity of the layer
+  LAYERS_OPACITY_INPUT.change(function() {
+    let tableToChange = $('table.layers-added.active-layer');
+    let tableOneToChange = $('table.canvas-table.active-layer');
+
+    let valueOpacity = LAYERS_OPACITY_INPUT.val();
+    valueOpacity /= 100;
+
+    $(tableToChange).css('opacity', valueOpacity);
+    $(tableOneToChange).css('opacity', valueOpacity);
   });
 
   // Change colours of the colours pickers
