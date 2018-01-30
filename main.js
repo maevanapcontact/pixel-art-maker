@@ -75,6 +75,8 @@ $(function() {
   const ADD_LAYER_BTN = $('#add-layer-btn');
   const LAYER_BOX = $('#layer-box');
   const DELETE_LAYER_BTN = $('#delete-layer-btn');
+  const LAYER_NAME_INPUT = $('#layer-name-input');
+
   let numberLayer = 1;
   let currentLayerActive = 1;
 
@@ -593,6 +595,15 @@ $(function() {
         }
       }
     }
+  });
+
+  LAYER_NAME_INPUT.change(function(event) {
+    event.preventDefault();
+    let layerToRename = $('.layers.active-layer');
+    let valueEntered = LAYER_NAME_INPUT.val();
+    console.log(valueEntered);
+
+    $(layerToRename).text(valueEntered);
   });
 
   // Change colours of the colours pickers
