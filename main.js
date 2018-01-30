@@ -568,8 +568,12 @@ $(function() {
   });
 
   DELETE_LAYER_BTN.click(function() {
-    $('.active-layer').remove();
-    currentLayerActive = 0;
+    if ($('.layers.active-layer').attr('id') === 'layer-box-1') {
+      return false;
+    } else {
+      $('.active-layer').remove();
+      currentLayerActive = 0;
+    }
   });
 
   LAYER_BOX.click(function(event) {
