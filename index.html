@@ -100,11 +100,11 @@
               <div class="grid-custom-sizes">
                 <div class="grid-inputs">
                   <label for="width-input">width</label>
-                  <input id="width-input" name="width-input" type="number" value="10" min="1" max="150">
+                  <input id="width-input" name="width-input" type="number" value="10" min="1" max="64">
                 </div>
                 <div class="grid-inputs">
                   <label for="height-input">height</label>
-                  <input id="height-input" name="height-input" type="number" value="10" min="1" max="150">
+                  <input id="height-input" name="height-input" type="number" value="10" min="1" max="64">
                 </div>
               </div>
               <!-- Color Pickers -->
@@ -127,89 +127,6 @@
             <table class="canvas-table active-layer hidden" id="layer-1">
 
             </table>
-          </div>
-          <!-- Main menu -->
-          <div class="main-menu hidden" id="main-menu">
-            <!-- List items main menu -->
-            <ul class="main-menu-list" id="main-menu-list">
-              <li class="main-menu-new">New</li>
-              <li class="disabled-text main-menu-open" id="main-menu-open">Open</li>
-              <li class="disabled-text main-menu-save" id="main-menu-save">Save</li>
-              <li class="disabled-text main-menu-dl" id="main-menu-dl">Download</li>
-              <li class="disabled-text main-menu-set" id="main-menu-set">Settings</li>
-              <li class="main-menu-close">Close</li>
-            </ul>
-            <!-- Popup settings -->
-            <div class="settings-popup hidden" id="settings-popup">
-              <div class="settings-item">
-                <label for="settigs-grid-color">Grid Color</label>
-                <input type="color" value="#000000" id="settigs-grid-color">
-              </div>
-              <div class="settings-item">
-                <label for="settings-cell-size">Cell Sizes</label>
-                <input id="settings-cell-size" name="settings-cell-size" type="number" value="20" min="1" max="60">
-              </div>
-              <div class="settings-item">
-                <input type="submit" value="SAVE" class="settings-save" id="settings-save">
-              </div>
-            </div>
-          </div>
-          <!-- Color Palette -->
-          <div class="color-palette-menu hidden" id="color-palette-menu">
-            <ul>
-              <li class="palette-1" id="palette-1">Vintage Charm</li>
-              <li class="palette-2" id="palette-2">Earthy and Fresh</li>
-              <li class="palette-3" id="palette-3">Cheerful and Sleek</li>
-              <li class="palette-4" id="palette-4">Summer Inspired</li>
-              <li class="palette-5" id="palette-5">Modern and Clean</li>
-              <li class="palette-6" id="palette-6">Default</li>
-            </ul>
-          </div>
-          <!-- Layer Popup -->
-          <div class="layer-popup hidden" id="layer-popup">
-            <!-- Main Icons -->
-            <div class="layers-content layers-main-icons">
-              <form action="#" id="layers-opacity-form" class="">
-                <input type="range" name="layers-opacity" min="0" max="100" id="layers-opacity-input">
-              </form>
-              <span class="icon-click" id="lock-layer">
-                <span id="lock-open">
-                  <i class="fas fa-lock-open"></i>
-                </span>
-                <span class="hidden" id="lock">
-                  <i class="fas fa-lock"></i>
-                </span>
-              </span>
-              <span class="icon-click" id="partially-lock-layer">
-                <i class="fas fa-th"></i>
-              </span>
-              <span class="icon-click" id="visible-layer">
-                <span id="eye">
-                  <i class="fas fa-eye"></i>
-                </span>
-                <span class="hidden" id="eye-slash">
-                  <i class="fas fa-eye-slash"></i>
-                </span>
-              </span>
-            </div>
-            <!-- Layers -->
-            <div class="layers-content layers-box" id="layer-box">
-              <div class="layers active-layer" id="layer-box-1">
-                Layer 1
-              </div>
-            </div>
-            <!-- Management Icons -->
-            <div class="layers-content layers-manage-icons">
-              <form action="#" onSubmit="return false;">
-                <input type="text" name="layer-name-input" id="layer-name-input" maxlength="15" placeholder="NAME ACTIVE LAYER">
-              </form>
-              <span class="icon-click" id="add-layer-btn">
-                <i class="fas fa-plus-square"></i>
-              </span>
-              <span class="icon-click" id="delete-layer-btn">
-                <i class="fas fa-trash-alt"></i>
-              </span>
-            </div>
           </div>
         </main>
         <!-- Tools Bar -->
@@ -263,6 +180,89 @@
           </div> <!-- Tools Bar Inside -->
         </div> <!-- Tools Bar -->
       </section>
+      <!-- Main menu -->
+      <div class="main-menu hidden" id="main-menu">
+        <!-- List items main menu -->
+        <ul class="main-menu-list" id="main-menu-list">
+          <li class="main-menu-new">New</li>
+          <li class="disabled-text main-menu-open" id="main-menu-open">Open</li>
+          <li class="disabled-text main-menu-save" id="main-menu-save">Save</li>
+          <li class="disabled-text main-menu-dl" id="main-menu-dl">Download</li>
+          <li class="disabled-text main-menu-set" id="main-menu-set">Settings</li>
+          <li class="main-menu-close">Close</li>
+        </ul>
+        <!-- Popup settings -->
+        <div class="settings-popup hidden" id="settings-popup">
+          <div class="settings-item">
+            <label for="settigs-grid-color">Grid Color</label>
+            <input type="color" value="#000000" id="settigs-grid-color">
+          </div>
+          <div class="settings-item">
+            <label for="settings-cell-size">Cell Sizes</label>
+            <input id="settings-cell-size" name="settings-cell-size" type="number" value="20" min="1" max="60">
+          </div>
+          <div class="settings-item">
+            <input type="submit" value="SAVE" class="settings-save" id="settings-save">
+          </div>
+        </div>
+      </div>
+      <!-- Color Palette -->
+      <div class="color-palette-menu hidden" id="color-palette-menu">
+        <ul>
+          <li class="palette-1" id="palette-1">Vintage Charm</li>
+          <li class="palette-2" id="palette-2">Earthy and Fresh</li>
+          <li class="palette-3" id="palette-3">Cheerful and Sleek</li>
+          <li class="palette-4" id="palette-4">Summer Inspired</li>
+          <li class="palette-5" id="palette-5">Modern and Clean</li>
+          <li class="palette-6" id="palette-6">Default</li>
+        </ul>
+      </div>
+      <!-- Layer Popup -->
+      <div class="layer-popup hidden" id="layer-popup">
+        <!-- Main Icons -->
+        <div class="layers-content layers-main-icons">
+          <form action="#" id="layers-opacity-form" class="">
+            <input type="range" name="layers-opacity" min="0" max="100" id="layers-opacity-input">
+          </form>
+          <span class="icon-click" id="lock-layer">
+            <span id="lock-open">
+              <i class="fas fa-lock-open"></i>
+            </span>
+            <span class="hidden" id="lock">
+              <i class="fas fa-lock"></i>
+            </span>
+          </span>
+          <span class="icon-click" id="partially-lock-layer">
+            <i class="fas fa-th"></i>
+          </span>
+          <span class="icon-click" id="visible-layer">
+            <span id="eye">
+              <i class="fas fa-eye"></i>
+            </span>
+            <span class="hidden" id="eye-slash">
+              <i class="fas fa-eye-slash"></i>
+            </span>
+          </span>
+        </div>
+        <!-- Layers -->
+        <div class="layers-content layers-box" id="layer-box">
+          <div class="layers active-layer" id="layer-box-1">
+            Layer 1
+          </div>
+        </div>
+        <!-- Management Icons -->
+        <div class="layers-content layers-manage-icons">
+          <form action="#" onSubmit="return false;">
+            <input type="text" name="layer-name-input" id="layer-name-input" maxlength="15" placeholder="NAME ACTIVE LAYER">
+          </form>
+          <span class="icon-click" id="add-layer-btn">
+            <i class="fas fa-plus-square"></i>
+          </span>
+          <span class="icon-click" id="delete-layer-btn">
+            <i class="fas fa-trash-alt"></i>
+          </span>
+        </div>
+      </div>
     </div> <!-- FULL WEBSITE -->
     <script src="html2canvas-min.js"></script>
   </body>
