@@ -589,6 +589,22 @@ canvas {
   cursor: pointer;
 }
 
+#color-item-1 {
+  background-color: #cb1c00;
+}
+
+#color-item-2 {
+  background-color: #679a00;
+}
+
+#color-item-3 {
+  background-color: #0098d1;
+}
+
+#color-item-4 {
+  background-color: #000000;
+}
+
 .fa-paint-brush,
 .fa-eraser,
 .fa-tint,

@@ -71,7 +71,7 @@ $(function() {
   let checkRedoClick = true;
   let checkUndoClick = true;
 
-  let currentPalette = '';
+  let currentPalette = 'palette-6';
 
   // Variables Layers
   const ADD_LAYER_BTN = $('#add-layer-btn');
@@ -232,6 +232,14 @@ $(function() {
         COLOR_PALETTE_MENU.addClass('hidden');
         currentPalette = 'palette-5';
       break;
+      case 'palette-6':
+        COLOR_ITEM_1.css('background-color', '#cb1c00');
+        COLOR_ITEM_2.css('background-color', '#679a00');
+        COLOR_ITEM_3.css('background-color', '#0098d1');
+        COLOR_ITEM_4.css('background-color', '#000000');
+        COLOR_PALETTE_MENU.addClass('hidden');
+        currentPalette = 'palette-6';
+      break;
     }
   });
 
@@ -261,6 +269,11 @@ $(function() {
       case 'palette-5':
         TOOL_COLOR.val('#e47122');
         TOOL_COLOR_ES.val('#e47122');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-6':
+        TOOL_COLOR.val('#cb1c00');
+        TOOL_COLOR_ES.val('#cb1c00');
         toolColor = TOOL_COLOR.val();
       break;
     }
@@ -293,6 +306,11 @@ $(function() {
         TOOL_COLOR_ES.val('#09899e');
         toolColor = TOOL_COLOR.val();
       break;
+      case 'palette-6':
+        TOOL_COLOR.val('#679a00');
+        TOOL_COLOR_ES.val('#679a00');
+        toolColor = TOOL_COLOR.val();
+      break;
     }
   });
 
@@ -323,6 +341,11 @@ $(function() {
         TOOL_COLOR_ES.val('#64babf');
         toolColor = TOOL_COLOR.val();
       break;
+      case 'palette-6':
+        TOOL_COLOR.val('#0098d1');
+        TOOL_COLOR_ES.val('#0098d1');
+        toolColor = TOOL_COLOR.val();
+      break
     }
   });
 
@@ -351,6 +374,11 @@ $(function() {
       case 'palette-5':
         TOOL_COLOR.val('#f1aa7e');
         TOOL_COLOR_ES.val('#f1aa7e');
+        toolColor = TOOL_COLOR.val();
+      break;
+      case 'palette-6':
+        TOOL_COLOR.val('#000000');
+        TOOL_COLOR_ES.val('#000000');
         toolColor = TOOL_COLOR.val();
       break;
     }
