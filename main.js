@@ -40,6 +40,8 @@ $(function() {
   const ICON_CLICK_REDO = $('#icon-click-redo');
   const UNDO_ESSENTIAL = $('#undo-essential');
   const ZOOM_INPUT = $('#zoom-input');
+  const MAIN_NAV_ITEM_WS = $('#main-nav-item-ws');
+  const TOOLS_BAR = $('#tools-bar');
 
   // Variables to create grid
   let widthCanvas = WIDTH_INPUT.val();
@@ -406,7 +408,6 @@ $(function() {
   function changeWorkspace() {
     let elementSelected = $('#workspaces-select option:selected');
 
-    const TOOLS_BAR = $('#tools-bar');
     const MAIN_TOOLS = $('#main-tools');
     const TOOLS_BAR_ITEM_1 = $('#tools-bar-item-1');
     const TOOLS_BAR_ITEM_2 = $('#tools-bar-item-2');
@@ -508,6 +509,8 @@ $(function() {
     // Show good popups
     CREATE_GRID_POPUP.addClass('hidden');
     CANVAS_TABLE.removeClass('hidden');
+    MAIN_NAV_ITEM_WS.removeClass('hidden');
+    TOOLS_BAR.removeClass('hidden');
 
     // Build the grid
     makeGrid();

@@ -871,16 +871,6 @@ canvas {
   }
 }
 
-
-/* HIDDEN */
-.full-website .hidden {
-  display: none;
-}
-
-.hidden {
-  display: none;
-}
-
 /* DISBABLED */
 .main-menu .disabled-text {
   color: #a3a3a3;
@@ -924,4 +914,17 @@ canvas {
 
 .part-lock {
   color: #e9722a;
+}
+
+/* HIDDEN */
+.full-website .hidden {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.full-website #tools-bar.hidden {
+  display: none;
 }
