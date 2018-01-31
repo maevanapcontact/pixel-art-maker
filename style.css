@@ -77,6 +77,7 @@ a {
   justify-content: space-between;
   padding: 10px 2%;
   position: fixed;
+  z-index: 10000;
 }
 
 .main-nav-item {
@@ -261,6 +262,7 @@ a {
 
 table {
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 table td {
@@ -779,6 +781,7 @@ canvas {
   display: flex;
   justify-content: space-between;
   margin: 0 10px;
+  z-index: 10000;
 }
 
 .item-essential-ws .fa-plus-circle {
