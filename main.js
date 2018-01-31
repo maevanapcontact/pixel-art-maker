@@ -140,6 +140,7 @@ $(function() {
         MAIN_MENU.addClass('hidden');
         DOWNLOAD.removeClass('hidden');
         $('table td').css('border', 'none');
+        CONTAINER_CANVAS.css('background-image', 'none');
         $('table td').css('width', SETTINGS_CELL_SIZE.val() + 'px');
         $('table td').css('height', SETTINGS_CELL_SIZE.val() + 'px');
         html2canvas(CONTAINER_CANVAS.get(0)).then(canvas => {
@@ -393,6 +394,9 @@ $(function() {
   DOWNLOAD.click(function() {
     DOWNLOAD.addClass('hidden');
     $('canvas').remove();
+    let borderValue = '1px solid ' + SETTINGS_GRID_COLOR.val();
+    $('table td').css('border', borderValue);
+    CONTAINER_CANVAS.css('background-image', 'url("images/background.png")');
   });
 
   // Undo

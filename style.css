@@ -252,6 +252,7 @@ a {
 /* CANVAS TABLE */
 .container-canvas {
   position: relative;
+  background-image: url("images/background.png");
 }
 
 .canvas-table {
