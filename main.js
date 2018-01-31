@@ -571,6 +571,17 @@ $(function() {
     LAYER_BOX.prepend('<div class="layers active-layer" id="layer-box-' + numberLayer + '">Layer ' + numberLayer + '</div>');
 
     currentLayerActive = numberLayer;
+
+    layerIsVisible = true;
+    EYE_SLASH.addClass('hidden');
+    EYE.removeClass('hidden');
+
+    layerIsLocked = false;
+    LOCK.addClass('hidden');
+    LOCK_OPEN.removeClass('hidden');
+
+    layerIsPartLock = false;
+    PARTIALLY_LOCK_LAYER.removeClass('part-lock');
   });
 
   DELETE_LAYER_BTN.click(function() {
@@ -586,7 +597,8 @@ $(function() {
     // let TABLE = $('table');
     let elementClicked = event.target;
 
-    if (elementClicked.className === 'layers' || elementClicked.className === 'layers-added' || elementClicked.className === 'layers hide-visibility' || elementClicked.className === 'layers-added hide-visibility' || elementClicked.className === 'layers lock-layer' || elementClicked.className === 'layers-added lock-layer' || elementClicked.className === 'layers part-lock' || elementClicked.className === 'layers-added part-lock') {
+    // if (elementClicked.className === 'layers' || elementClicked.className === 'layers-added' || elementClicked.className === 'layers hide-visibility' || elementClicked.className === 'layers-added hide-visibility' || elementClicked.className === 'layers lock-layer' || elementClicked.className === 'layers-added lock-layer' || elementClicked.className === 'layers part-lock' || elementClicked.className === 'layers-added part-lock') {
+    if ($(elementClicked).hasClass('layers') || $(elementClicked).hasClass('layers-added')) {
       $('#container-canvas table').removeClass('active-layer');
       $('#layer-box .layers').removeClass('active-layer');
 
