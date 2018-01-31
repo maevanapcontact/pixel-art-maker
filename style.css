@@ -319,6 +319,7 @@ table.layers-added {
 .settings-popup {
   border-bottom: 3px solid #e9722a;
   padding: 5px 10px;
+  z-index: 10000;
 }
 
 .settings-item {
@@ -397,7 +398,7 @@ table.layers-added {
   text-transform: uppercase;
   color: #fff;
   font-weight: 900;
-  z-index: 1000;
+  z-index: 10000;
   text-shadow: 2px 2px #000;
 }
 
@@ -428,7 +429,7 @@ table.layers-added {
   text-transform: uppercase;
   color: #fff;
   font-weight: 900;
-  z-index: 1000;
+  z-index: 10000;
   text-shadow: 2px 2px #000;
 }
 
@@ -442,6 +443,7 @@ table.layers-added {
 
 .layers-box {
   padding: 10px;
+  z-index: 10000;
 }
 
 .layers-main-icons {
@@ -509,7 +511,7 @@ table.layers-added {
   background: rgba(0, 0, 0, 0.9);
   width: 100vw;
   height: 100vh;
-  z-index: 1000;
+  z-index: 11000;
 }
 
 canvas {
@@ -526,6 +528,7 @@ canvas {
   position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: 10000;
 }
 
 .tools-bar-inside {
