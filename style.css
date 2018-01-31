@@ -905,6 +905,8 @@ canvas {
   color: #a3a3a3;
 }
 
+/* LOCK LAYERS */
+
 .lock-layer {
   color: #a3a3a3;
   background: #a3a3a3;
@@ -913,4 +915,13 @@ canvas {
 .layers.active-layer.lock-layer {
   background: #a3a3a3;
   color: #fff;
+}
+
+/* PARTIALLY LOCK LAYERS */
+.part-lock .fa-th {
+  color: #e9722a;
+}
+
+.part-lock {
+  color: #e9722a;
 }

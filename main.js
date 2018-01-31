@@ -83,11 +83,13 @@ $(function() {
   const LOCK_LAYER = $('#lock-layer');
   const LOCK_OPEN = $('#lock-open');
   const LOCK = $('#lock');
+  const PARTIALLY_LOCK_LAYER = $('#partially-lock-layer');
 
   let numberLayer = 1;
   let currentLayerActive = 1;
   let layerIsVisible = true;
   let layerIsLocked = false;
+  let layerIsPartLock = false;
 
   // Convert RGB to HEX
   function rgbToHex(rgbValue) {
@@ -584,7 +586,7 @@ $(function() {
     // let TABLE = $('table');
     let elementClicked = event.target;
 
-    if (elementClicked.className === 'layers' || elementClicked.className === 'layers-added' || elementClicked.className === 'layers hide-visibility' || elementClicked.className === 'layers-added hide-visibility' || elementClicked.className === 'layers lock-layer' || elementClicked.className === 'layers-added lock-layer') {
+    if (elementClicked.className === 'layers' || elementClicked.className === 'layers-added' || elementClicked.className === 'layers hide-visibility' || elementClicked.className === 'layers-added hide-visibility' || elementClicked.className === 'layers lock-layer' || elementClicked.className === 'layers-added lock-layer' || elementClicked.className === 'layers part-lock' || elementClicked.className === 'layers-added part-lock') {
       $('#container-canvas table').removeClass('active-layer');
       $('#layer-box .layers').removeClass('active-layer');
 
@@ -616,6 +618,14 @@ $(function() {
         LOCK.addClass('hidden');
         LOCK_OPEN.removeClass('hidden');
         layerIsLocked = false;
+      }
+
+      if ($(elementClicked).hasClass('part-lock')) {
+        PARTIALLY_LOCK_LAYER.addClass('part-lock');
+        layerIsPartLock = true;
+      } else {
+        PARTIALLY_LOCK_LAYER.removeClass('part-lock');
+        layerIsPartLock = false;
       }
     }
   });
@@ -667,19 +677,34 @@ $(function() {
 
   // Change the lock state of the layer
   LOCK_LAYER.click(function() {
-    let currentLayerToVisible = $('.layers.active-layer');
-    let currentTableToVisible = '#layer-' + currentLayerActive;
+    let currentLayerToLock = $('.layers.active-layer');
 
-    if ($(currentLayerToVisible).hasClass('lock-layer')) {
-      $(currentLayerToVisible).removeClass('lock-layer');
+    if ($(currentLayerToLock).hasClass('lock-layer')) {
+      $(currentLayerToLock).removeClass('lock-layer');
       LOCK.addClass('hidden');
       LOCK_OPEN.removeClass('hidden');
       layerIsLocked = false;
     } else {
-      $(currentLayerToVisible).addClass('lock-layer');
+      $(currentLayerToLock).addClass('lock-layer');
       LOCK.removeClass('hidden');
       LOCK_OPEN.addClass('hidden');
       layerIsLocked = true;
+    }
+  });
+
+  // Change the partially lock state of the layer
+  PARTIALLY_LOCK_LAYER.click(function() {
+    let currentLayerToPartLock = $('.layers.active-layer');
+    let currentTableToPartLock = '#layer-' + currentLayerActive;
+
+    if ($(currentLayerToPartLock).hasClass('part-lock')) {
+      $(currentLayerToPartLock).removeClass('part-lock');
+      PARTIALLY_LOCK_LAYER.removeClass('part-lock');
+      layerIsPartLock = false;
+    } else {
+      $(currentLayerToPartLock).addClass('part-lock');
+      PARTIALLY_LOCK_LAYER.addClass('part-lock');
+      layerIsPartLock = true;
     }
   });
 
@@ -789,63 +814,20 @@ $(function() {
   });
 
   // Use tools on the grid
-  $(document).on('click', '.cell-click', function() {
+  $(document).on('click', '.cell-click', function(event) {
+    let elementClicked = event.target;
+
     if (!layerIsLocked && layerIsVisible) {
-      undo = CONTAINER_CANVAS.html();
+      if (!layerIsPartLock || (layerIsPartLock && $(elementClicked).get(0).hasAttribute('bgcolor'))) {
+        undo = CONTAINER_CANVAS.html();
 
-      let tableColorAttribute = CANVAS_TABLE.css('background-color');
+        let tableColorAttribute = CANVAS_TABLE.css('background-color');
 
-      let cellClicked = $(this).attr('class');
-      cellClicked = cellClicked.replace(' ', '.');
-      let canvasChosenTd = '#layer-' + currentLayerActive + ' td';
-      let canvasChosen = '#layer-' + currentLayerActive + ' .' + cellClicked;
+        let cellClicked = $(this).attr('class');
+        cellClicked = cellClicked.replace(' ', '.');
+        let canvasChosenTd = '#layer-' + currentLayerActive + ' td';
+        let canvasChosen = '#layer-' + currentLayerActive + ' .' + cellClicked;
 
-      switch (currentTool) {
-        case 'brush':
-          $(canvasChosen).attr('bgcolor', toolColor);
-        break;
-        case 'eraser':
-          $(canvasChosen).removeAttr('bgcolor');
-        break;
-        case 'fill':
-          $(canvasChosenTd).attr('bgcolor', toolColor);
-        break;
-        case 'eyedropper':
-          for (let i = numberLayer; i > 0; i--) {
-            let layerLoop = '#layer-' + i + ' .' + cellClicked;
-            let bgColorAttribute = $(layerLoop).attr('bgcolor');
-            if (typeof bgColorAttribute !== typeof undefined &&
-              bgColorAttribute !== false) {
-                TOOL_COLOR.val(bgColorAttribute);
-                TOOL_COLOR_ES.val(bgColorAttribute);
-                toolColor = TOOL_COLOR.val();
-                return false;
-            } else {
-              let tableColorAttributeHex = rgbToHex(tableColorAttribute);
-              TOOL_COLOR.val(tableColorAttributeHex);
-              TOOL_COLOR_ES.val(tableColorAttributeHex);
-              toolColor = TOOL_COLOR.val();
-            }
-          }
-        break;
-      }
-
-      checkUndoClick = true;
-      checkRedoClick = true;
-    } else {
-      return false;
-    }
-  });
-
-  $(document).on('mouseenter', '.cell-click', function() {
-    if (!layerIsLocked && layerIsVisible) {
-      let cellClicked = $(this).attr('class');
-      cellClicked = cellClicked.replace(' ', '.');
-
-      let canvasChosen = '#layer-' + currentLayerActive + ' .' + cellClicked;
-
-      let selectedTool = $('.selected-tool');
-      if (mouseState) {
         switch (currentTool) {
           case 'brush':
             $(canvasChosen).attr('bgcolor', toolColor);
@@ -853,11 +835,62 @@ $(function() {
           case 'eraser':
             $(canvasChosen).removeAttr('bgcolor');
           break;
+          case 'fill':
+            $(canvasChosenTd).attr('bgcolor', toolColor);
+          break;
+          case 'eyedropper':
+            for (let i = numberLayer; i > 0; i--) {
+              let layerLoop = '#layer-' + i + ' .' + cellClicked;
+              let bgColorAttribute = $(layerLoop).attr('bgcolor');
+              if (typeof bgColorAttribute !== typeof undefined &&
+                bgColorAttribute !== false) {
+                  TOOL_COLOR.val(bgColorAttribute);
+                  TOOL_COLOR_ES.val(bgColorAttribute);
+                  toolColor = TOOL_COLOR.val();
+                  return false;
+              } else {
+                let tableColorAttributeHex = rgbToHex(tableColorAttribute);
+                TOOL_COLOR.val(tableColorAttributeHex);
+                TOOL_COLOR_ES.val(tableColorAttributeHex);
+                toolColor = TOOL_COLOR.val();
+              }
+            }
+          break;
         }
+
+        checkUndoClick = true;
+        checkRedoClick = true;
+      } else {
+        return false;
       }
-    } else {
-      return false;
-    }
+      }
+  });
+
+  $(document).on('mouseenter', '.cell-click', function(event) {
+    let elementClicked = event.target;
+
+    if (!layerIsLocked && layerIsVisible) {
+      if (!layerIsPartLock || (layerIsPartLock && $(elementClicked).get(0).hasAttribute('bgcolor'))) {
+        let cellClicked = $(this).attr('class');
+        cellClicked = cellClicked.replace(' ', '.');
+
+        let canvasChosen = '#layer-' + currentLayerActive + ' .' + cellClicked;
+
+        let selectedTool = $('.selected-tool');
+        if (mouseState) {
+          switch (currentTool) {
+            case 'brush':
+              $(canvasChosen).attr('bgcolor', toolColor);
+            break;
+            case 'eraser':
+              $(canvasChosen).removeAttr('bgcolor');
+            break;
+          }
+        }
+      } else {
+        return false;
+      }
+      }
   });
 
   // Reset Grid Content
