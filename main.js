@@ -388,6 +388,7 @@ $(function() {
   // Open / Close layer button
   LAYER_BTN.click(function() {
     LAYER_POPUP.toggleClass('hidden');
+    LAYER_BTN.toggleClass('selected-popup');
   });
 
   // Close the download section

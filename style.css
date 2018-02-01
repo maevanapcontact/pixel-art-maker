@@ -949,3 +949,7 @@ canvas {
 .full-website #tools-bar.hidden {
   display: none;
 }
+
+.selected-popup .fa-file {
+  color: #e9722a;
+}
