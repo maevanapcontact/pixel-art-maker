@@ -73,6 +73,8 @@ $(function() {
 
   let currentPalette = 'palette-6';
 
+  let zoomWasChanged = false;
+
   // Variables Layers
   const ADD_LAYER_BTN = $('#add-layer-btn');
   const LAYER_BOX = $('#layer-box');
@@ -175,6 +177,7 @@ $(function() {
   ZOOM_INPUT.change(function() {
     $('table td').css('width', ZOOM_INPUT.val() + 'px');
     $('table td').css('height', ZOOM_INPUT.val() + 'px');
+    zoomWasChanged = true;
   });
 
   // Open Build Grid Popup
@@ -602,8 +605,10 @@ $(function() {
       }
     }
 
-    $('table td').css('width', ZOOM_INPUT.val() + 'px');
-    $('table td').css('height', ZOOM_INPUT.val() + 'px');
+    if (zoomWasChanged) {
+      $('table td').css('width', ZOOM_INPUT.val() + 'px');
+      $('table td').css('height', ZOOM_INPUT.val() + 'px');
+    }
 
     $('#layer-box .layers').removeClass('active-layer');
 
