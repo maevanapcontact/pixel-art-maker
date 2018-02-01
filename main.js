@@ -866,16 +866,17 @@ $(function() {
     let elementClicked = event.target;
 
     if (!layerIsLocked && layerIsVisible) {
-      if (!layerIsPartLock || (layerIsPartLock && $(elementClicked).get(0).hasAttribute('bgcolor'))) {
-        undo = CONTAINER_CANVAS.html();
+      // if (!layerIsPartLock || (layerIsPartLock && $(elementClicked).get(0).hasAttribute('bgcolor'))) {
+      undo = CONTAINER_CANVAS.html();
 
-        let tableColorAttribute = CANVAS_TABLE.css('background-color');
+      let tableColorAttribute = CANVAS_TABLE.css('background-color');
 
-        let cellClicked = $(this).attr('class');
-        cellClicked = cellClicked.replace(' ', '.');
-        let canvasChosenTd = '#layer-' + currentLayerActive + ' td';
-        let canvasChosen = '#layer-' + currentLayerActive + ' .' + cellClicked;
+      let cellClicked = $(this).attr('class');
+      cellClicked = cellClicked.replace(' ', '.');
+      let canvasChosenTd = '#layer-' + currentLayerActive + ' td';
+      let canvasChosen = '#layer-' + currentLayerActive + ' .' + cellClicked;
 
+      if (!layerIsPartLock || (layerIsPartLock && $(canvasChosen).get(0).hasAttribute('bgcolor'))) {
         switch (currentTool) {
           case 'brush':
             $(canvasChosen).attr('bgcolor', toolColor);
@@ -908,17 +909,19 @@ $(function() {
 
         checkUndoClick = true;
         checkRedoClick = true;
-      } else {
-        return false;
       }
-      }
+
+        // } else {
+        //   return false;
+        // }
+    }
   });
 
   $(document).on('mouseenter', '.cell-click', function(event) {
     let elementClicked = event.target;
 
     if (!layerIsLocked && layerIsVisible) {
-      if (!layerIsPartLock || (layerIsPartLock && $(elementClicked).get(0).hasAttribute('bgcolor'))) {
+      // if (!layerIsPartLock || (layerIsPartLock && $(elementClicked).get(0).hasAttribute('bgcolor'))) {
         let cellClicked = $(this).attr('class');
         cellClicked = cellClicked.replace(' ', '.');
 
@@ -926,18 +929,20 @@ $(function() {
 
         let selectedTool = $('.selected-tool');
         if (mouseState) {
-          switch (currentTool) {
-            case 'brush':
-              $(canvasChosen).attr('bgcolor', toolColor);
-            break;
-            case 'eraser':
-              $(canvasChosen).removeAttr('bgcolor');
-            break;
+          if (!layerIsPartLock || (layerIsPartLock && $(canvasChosen).get(0).hasAttribute('bgcolor'))) {
+            switch (currentTool) {
+              case 'brush':
+                $(canvasChosen).attr('bgcolor', toolColor);
+              break;
+              case 'eraser':
+                $(canvasChosen).removeAttr('bgcolor');
+              break;
+            }
           }
         }
-      } else {
-        return false;
-      }
+      // } else {
+      //   return false;
+      // }
       }
   });
 
