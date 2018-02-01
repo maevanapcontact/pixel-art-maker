@@ -23,13 +23,13 @@
 - [x] Eraser (Remove the color background)
 - [x] EyeDropper (Take the color of the cell or the background color if empty cell)
 - [x] Paint Bucket (Fill the whole grid)
-- [ ] Layers
-  - [ ] Create / Delete layer
-  - [ ] Activate / Deactivate a layer
-  - [ ] Opacity (0 to 100)
-  - [ ] Lock / Unlock (Can draw on it or not)
-  - [ ] Partial lock (Can draw on already-filled cells)
-  - [ ] Visible / Hidden (Display or not)
+- [x] Layers
+  - [x] Create / Delete layer
+  - [x] Activate / Deactivate a layer
+  - [x] Opacity (0 to 100)
+  - [x] Lock / Unlock (Can draw on it or not)
+  - [x] Partial lock (Can draw on already-filled cells)
+  - [x] Visible / Hidden (Display or not)
 - [x] Reset Grid (Empty all the cells)
 
 ## Workspaces
