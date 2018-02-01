@@ -294,7 +294,7 @@ table.layers-added {
   text-transform: uppercase;
   color: #fff;
   font-weight: 900;
-  z-index: 1000;
+  z-index: 11000;
   text-shadow: 2px 2px #000;
 }
 
@@ -319,7 +319,7 @@ table.layers-added {
 .settings-popup {
   border-bottom: 3px solid #e9722a;
   padding: 5px 10px;
-  z-index: 10000;
+  z-index: 11000;
 }
 
 .settings-item {
