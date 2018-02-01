@@ -602,6 +602,9 @@ $(function() {
       }
     }
 
+    $('table td').css('width', ZOOM_INPUT.val() + 'px');
+    $('table td').css('height', ZOOM_INPUT.val() + 'px');
+
     $('#layer-box .layers').removeClass('active-layer');
 
     LAYER_BOX.prepend('<div class="layers active-layer" id="layer-box-' + numberLayer + '">Layer ' + numberLayer + '</div>');
